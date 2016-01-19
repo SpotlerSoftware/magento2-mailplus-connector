@@ -31,67 +31,71 @@ class InstallSchema implements InstallSchemaInterface {
 		$installer = $setup;
 		$installer->startSetup ();
 		
-		$table = $installer->getConnection ()->newTable ( $installer->getTable ( 'mailplus_bounce' ) )->addColumn ( 'id', Table::TYPE_INTEGER, null, [ 
-				'identity' => true,
-				'unsigned' > true,
-				'nullable' => false,
-				'primary' => true 
-		], 'Id' )->addColumn ( 'mailplus_id', Table::TYPE_TEXT, 255, [ 
-				'nullable' => false 
-		], 'MailPlus Id' )->addColumn ( 'firstname', Table::TYPE_TEXT, 255, [ 
-				'nullable' => false 
-		], 'First name' )->addColumn ( 'lastname', Table::TYPE_TEXT, 255, [ 
-				'nullable' => false 
-		], 'Last name' )->addColumn ( 'insertion', Table::TYPE_TEXT, 255, [ 
-				'nullable' => false 
-		], 'Insertion' )->addColumn ( 'email', Table::TYPE_TEXT, 255, [ 
-				'nullable' => false 
-		], 'Email' )->addColumn ( 'total_received', Table::TYPE_INTEGER, null, [ 
-				'nullable' => false,
-				'unsigned' => true 
-		], 'Total recieved' )->addColumn ( 'is_test', Table::TYPE_SMALLINT, null, [ 
-				'nullable' => false 
-		], 'Is test' )->addColumn ( 'is_customer_alerted', Table::TYPE_INTEGER, null, [ 
-				'nullable' => false,
-				'default' => '0' 
-		], 'Is customer alerted' )->addColumn ( 'last_bounce_date', Table::TYPE_DATETIME, null, [ 
-				'nullable' => false 
-		], 'Last bounce date' )->addIndex ( $installer->getIdxName ( 'mailplus_bounce', [ 
-				'mailplus_id' 
-		] ), [ 
-				'mailplus_id' 
-		] );
+		$table = $installer->getConnection ()->newTable (
+				$installer->getTable ( 'mailplus_bounce' )
+		)->addColumn ( 'id', Table::TYPE_INTEGER, null,
+				[ 'identity' => true, 'unsigned' > true, 'nullable' => false, 'primary' => true],
+				'Id'
+		)->addColumn ( 'mailplus_id', Table::TYPE_TEXT, 255,
+				['nullable' => false],
+				'MailPlus Id'
+		)->addColumn ( 'firstname', Table::TYPE_TEXT, 255,
+				['nullable' => false],
+				'First name' )
+		->addColumn ( 'lastname', Table::TYPE_TEXT, 255,
+				['nullable' => false],
+				'Last name' )
+		->addColumn ( 'insertion', Table::TYPE_TEXT, 255,
+				['nullable' => false],
+				'Insertion'
+		 )->addColumn ( 'email', Table::TYPE_TEXT, 255,
+		 		['nullable' => false],
+		 		'Email' )
+		 ->addColumn ( 'total_received', Table::TYPE_INTEGER, null,
+		 		['nullable' => false, 'unsigned' => true],
+		 		'Total recieved'
+		 )->addColumn ( 'is_test', Table::TYPE_SMALLINT, null,
+		 		['nullable' => false],
+		 		'Is test'
+		 )->addColumn ( 'is_customer_alerted', Table::TYPE_INTEGER, null,
+		 		['nullable' => false, 'default' => '0'],
+		 		'Is customer alerted'
+		 )->addColumn ( 'last_bounce_date', Table::TYPE_DATETIME, null,
+		 		['nullable' => false],
+		 		'Last bounce date'
+		 )->addIndex ( $installer->getIdxName ( 'mailplus_bounce', ['mailplus_id'] ),
+		 		['mailplus_id'] );
 		
 		$installer->getConnection ()->createTable ( $table );
 		
-		$table = $installer->getConnection ()->newTable ( $installer->getTable ( 'mailplus_product' ) )->addColumn ( 'entity_id', Table::TYPE_INTEGER, null, [ 
-				'identity' => true,
-				'unsigned' > true,
-				'nullable' => false,
-				'primary' => true 
-		], 'Id' )->addColumn ( 'catalog_product_entity_id', Table::TYPE_INTEGER, null, [ 
-				'nullable' => false,
-				'unsigned' => true 
-		], 'Product id' )->addColumn ( 'store_id', Table::TYPE_INTEGER, null, [ 
-				'nullable' => false,
-				'unsigned' => true 
-		], 'Store id' )->addColumn ( 'price', Table::TYPE_DECIMAL, [12,4], [ 
-				'nullable' => false 
-		], 'Price' )->addColumn ( 'checksum', Table::TYPE_BIGINT, 20, [ 
-				'nullable' => false 
-		], 'Checksum' )->addColumn ( 'created_at', Table::TYPE_DATETIME, null, [ 
-				'nullable' => false 
-		], 'Created at' )->addColumn ( 'updated_at', Table::TYPE_DATETIME, null, [ 
-				'nullable' => false 
-		], 'Updated at' )->addIndex ( $installer->getIdxName ( 'mailplus_product', [ 
-				'store_id' 
-		] ), [ 
-				'store_id' 
-		] )->addIndex ( $installer->getIdxName ( 'mailplus_product', [ 
-				'catalog_product_entity_id' 
-		] ), [ 
-				'catalog_product_entity_id' 
-		] );
+		$table = $installer->getConnection ()->newTable (
+				$installer->getTable ( 'mailplus_product' )
+		)->addColumn ( 'entity_id', Table::TYPE_INTEGER, null,
+				['identity' => true, 'unsigned' > true, 'nullable' => false, 'primary' => true],
+				'Id'
+		)->addColumn ( 'catalog_product_entity_id', Table::TYPE_INTEGER, null,
+				['nullable' => false, 'unsigned' => true],
+				'Product id' )
+		->addColumn ( 'store_id', Table::TYPE_INTEGER, null,
+				['nullable' => false, 'unsigned' => true],
+				'Store id'
+		)->addColumn ( 'price', Table::TYPE_DECIMAL, [12,4],
+				['nullable' => false],
+				'Price'
+		)->addColumn ( 'checksum', Table::TYPE_BIGINT, 20,
+				['nullable' => false],
+				'Checksum'
+		)->addColumn ( 'created_at', Table::TYPE_DATETIME, null,
+				['nullable' => false],
+				'Created at' )
+		->addColumn ( 'updated_at', Table::TYPE_DATETIME, null,
+				['nullable' => false],
+				'Updated at'
+		)->addIndex ( $installer->getIdxName ( 'mailplus_product', ['store_id'] ),
+				['store_id'] )
+		->addIndex ( $installer->getIdxName ( 'mailplus_product', [	'catalog_product_entity_id'] ),
+				['catalog_product_entity_id']
+		);
 		
 		$installer->getConnection ()->createTable ( $table );
 		
