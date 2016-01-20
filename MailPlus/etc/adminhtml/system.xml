@@ -28,6 +28,54 @@
 					<validate>required-entry</validate>
 				</field>
 			</group>
+
+			<group id="syncsettings" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+				showInStore="1">
+				<label>Sync Settings</label>
+				<field id="sync_synchronize" translate="label" type="select" sortOrder="1" showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>Synchronize</label>
+					<source_model>MailPlus\MailPlus\Model\System\Config\Sync\Synchronize</source_model>
+				</field>
+				<field id="sync_productspecifications" translate="label" type="select" sortOrder="2" showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>Product specifications</label>
+					<source_model>MailPlus\MailPlus\Model\System\Config\Sync\ProductSpecifications</source_model>
+				</field>
+			</group>
+
+			<group id="campaigns" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1"
+				showInStore="1">
+				<label>MailPlus Campaigns</label>
+				<field id="campaigns_newsletter" translate="label" type="select" sortOrder="1" showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>Newsletter campaign</label>
+					<source_model>MailPlus\MailPlus\Model\System\Config\Sync\ProductSpecifications</source_model>
+				</field>
+				<field id="campaigns_abandonedcart" translate="label" type="select" sortOrder="2" showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>Abandoned cart campaign</label>
+					<source_model>MailPlus\MailPlus\Model\System\Config\Sync\ProductSpecifications</source_model>
+				</field>
+				<field id="campaigns_productreview" translate="label" type="select" sortOrder="3" showInDefault="1"
+					showInWebsite="1" showInStore="1">
+					<label>Product review campaign</label>
+					<source_model>MailPlus\MailPlus\Model\System\Config\Sync\ProductSpecifications</source_model>
+				</field>
+				
+			</group>
+
+			<group id="advanced" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1"
+				showInStore="1">
+				<label>Advanced</label>
+				<field id="advanced_logging" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1"
+					showInStore="1">
+					<label>Debug logging</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				
+			</group>
+
 		</section>
 	</system>
 </config>
