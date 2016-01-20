@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/system_file.xsd">
+	<system>
+		<tab id="MailPlus" translate="label" sortOrder="50">
+			<label>MailPlus Connector</label>
+		</tab>
+		<section id="MailPlus_settings" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1"
+			showInStore="1">
+			<label>MailPlus Connector Settings</label>
+			<tab>MailPlus</tab>
+			<resource>MailPlus_MailPlus::system_config</resource>
+			<group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+				showInStore="1">
+				<label>General Settings</label>
+				<field id="enable_in_frontend" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+					showInStore="1">
+					<label>Enabled</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="consumerkey" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+					showInStore="1">
+					<label>Consumer key</label>
+					<validate>required-entry</validate>
+				</field>
+				<field id="consumersecret" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+					showInStore="1">
+					<label>Consumer secret</label>
+					<validate>required-entry</validate>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

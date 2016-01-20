@@ -4,12 +4,20 @@
 		<resources>
 			<resource id="Magento_Backend::admin">
 				<resource id="Magento_Backend::system">
-					<resource id="MailPlus_MailPlus::menu" title="MailPlus connector" sortOrder="10">
-						<resource id="MailPlus_MailPlus::settings" title="Settings" sortOrder="40">
-							
+					<resource id="MailPlus_MailPlus::menu" title="MailPlus connector">
+						<resource id="MailPlus_MailPlus::settings" title="Settings">
+
 						</resource>
 					</resource>
 				</resource>
+				<resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="MailPlus_MailPlus::system_config" title="Settings" />
+						</resource>
+					</resource>
+				</resource>
+
 			</resource>
 		</resources>
 	</acl>
