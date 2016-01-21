@@ -1,0 +1,29 @@
+<?php
+
+$params = [];
+$websiteId = $this->getRequest()->getParam('website'); 
+if (isset($websiteId)) {
+	$params['website'] = $websiteId;
+}
+
+?>
+<div class="page-actions">
+    <div class="page-actions-inner">
+        <div class="page-actions-buttons">
+            <form
+                action="<?php /* @escapeNotVerified */ echo $block->getUrl('*/*/', $params) ?>"
+                method="post">
+                <input
+                    name="form_key"
+                    type="hidden"
+                    value="<?php /* @escapeNotVerified */ echo $block->getFormKey(); ?>"/>
+                <button
+                    class="action-primary"
+                    type="submit"
+                    title="Refresh Data">
+                    <?php /* @escapeNotVerified */ echo __('Refresh') ?>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
