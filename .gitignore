@@ -1,2 +1,19 @@
 /.buildpath
 /.project
+
+#composer
+composer.lock
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+#vagrant
+.vagrant
+
+#Salt
+minion.dpkg-dist
+minion_id
+minion
+proxy
