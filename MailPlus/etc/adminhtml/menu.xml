@@ -3,7 +3,7 @@
 	<menu>
 		<add id="MailPlus_MailPlus::menu" title="MailPlus connector" module="MailPlus_MailPlus" sortOrder="50"
 			parent="Magento_Backend::system" resource="MailPlus_MailPlus::menu" />
-		<add id="MailPlus_MailPlus::settings" title="Settings" module="MailPlus_MailPlus" sortOrder="0"
-			parent="MailPlus_MailPlus::menu" action="mailplus/settings" resource="MailPlus_MailPlus::settings" />
+		<add id="MailPlus_MailPlus::settings" title="Status" module="MailPlus_MailPlus" sortOrder="0"
+			parent="MailPlus_MailPlus::menu" action="mailplus/status" resource="MailPlus_MailPlus::status" />
 	</menu>
 </config>

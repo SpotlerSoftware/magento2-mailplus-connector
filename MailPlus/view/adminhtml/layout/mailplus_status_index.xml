@@ -4,6 +4,9 @@
 	<body>
 		<referenceContainer name="content">
 			
+			
+			
+			<block name="mailplus_mailplus.version" class="MailPlus\MailPlus\Block\Adminhtml\Status\Version" before="-" template="MailPlus_MailPlus::status/version.phtml" />
 		</referenceContainer>
 	</body>
 </page>

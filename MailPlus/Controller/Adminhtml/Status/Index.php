@@ -1,6 +1,6 @@
 <?php
 
-namespace MailPlus\MailPlus\Controller\Adminhtml\Settings;
+namespace MailPlus\MailPlus\Controller\Adminhtml\Status;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
@@ -31,8 +31,8 @@ class Index extends \Magento\Backend\App\Action {
 	public function execute() {
 		/** @var \Magento\Backend\Model\View\Result\Page $resultPage */
 		$resultPage = $this->resultPageFactory->create ();
-		$resultPage->setActiveMenu ( 'MailPlus_MailPlus::settings' );
-		$resultPage->addBreadcrumb ( __ ( 'MailPlus Connector Settings' ), __ ( 'MailPlus Connector Settings' ) );
+		$resultPage->setActiveMenu ( 'MailPlus_MailPlus::status' );
+		$resultPage->addBreadcrumb ( __ ( 'MailPlus Connector Status' ), __ ( 'MailPlus Connector Status' ) );
 		$resultPage->getConfig ()->getTitle ()->prepend ( __ ( 'MailPlus Connector' ) );
 		
 		return $resultPage;
@@ -43,6 +43,6 @@ class Index extends \Magento\Backend\App\Action {
 	 * @return bool
 	 */
 	protected function _isAllowed() {
-		return $this->_authorization->isAllowed ( 'MailPlus_MailPlus::settings' );
+		return $this->_authorization->isAllowed ( 'MailPlus_MailPlus::status' );
 	}
 }
