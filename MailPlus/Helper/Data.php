@@ -42,4 +42,11 @@ class Data extends AbstractHelper {
 	public function isEnabledForSite($siteId) {
 		return 1 == $this->_scopeConfig->getValue(self::CONFIG_ENABLED, ScopeInterface::SCOPE_WEBSITE, $siteId);
 	}
+	
+	public function getApiClient($websiteId) {
+		$key = $this->_scopeConfig->getValue(self::CONFIG_CONSUMER_KEY, ScopeInterface::SCOPE_WEBSITE, $websiteId);
+		$secret = $this->_scopeConfig->getValue(self::CONFIG_CONSUMER_SECRET, ScopeInterface::SCOPE_WEBSITE, $websiteId);
+				
+		return new \MailPlus\MailPlus\Helper\MailPlus\Api($key, $secret);
+	}
 }

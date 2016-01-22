@@ -41,4 +41,17 @@ class Version extends Template {
 		return $this->_dataHelper->isEnabledForSite($siteId);
 	}
 	
+	public function checkMailPlusApi($websiteId) {
+		/**
+		 * 
+		 * @var MailPlus\MailPlus\Helper\MailPlus\Api
+		 */
+		$api = $this->_dataHelper->getApiClient($websiteId);
+		$props = $api->getContactProperties();
+
+		if ($props) {
+			return true;
+		}
+		return false;
+	}
 }

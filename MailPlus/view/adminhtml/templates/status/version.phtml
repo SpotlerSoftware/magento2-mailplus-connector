@@ -1,13 +1,21 @@
+<?php 
+  $websiteId = $this->getCurrentWebsite()->getId();
+?>
+
 <div>
 	<h2>State for website <?php echo $this->escapeHtml($this->getCurrentWebsite()->getName());  ?></h2>
 
-<?php if (!$this->isEnabledForSite($this->getCurrentWebsite()->getId())) { ?>
-	<p class="warning">The MailPlus Connector is disabled</p>
+<?php if (!$this->isEnabledForSite($websiteId)) { ?>
+	<p class="warning">The MailPlus Connector is disabled.</p>
 <?php } else { ?>
-	<p>The MailPlus Connector is enabled</p>
+	<p>The MailPlus Connector is enabled.</p>
 <?php }?>
-	
 
 
+<?php if ($this->checkMailPlusApi($websiteId)) { ?>
+	<p>Connection to MailPlus API is OK.</p>
+<?php } else { ?>
+	<p>Could not connect to the MailPlus API.</p> 
+<?php }?>	
 
 </div>
