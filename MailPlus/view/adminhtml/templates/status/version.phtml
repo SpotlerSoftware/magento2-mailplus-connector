@@ -1,5 +1,6 @@
 <?php 
   $websiteId = $this->getCurrentWebsite()->getId();
+  $params['section'] = 'mailplus';
 ?>
 
 <div>
@@ -12,10 +13,13 @@
 <?php }?>
 
 
-<?php if ($this->checkMailPlusApi($websiteId)) { ?>
+<?php if (!$this->checkMailPlusApi($websiteId)) { ?>
 	<p>Connection to MailPlus API is OK.</p>
 <?php } else { ?>
-	<p>Could not connect to the MailPlus API.</p> 
+	<p>Could not connect to the MailPlus API. Please check the 
+		<?php echo '<a href="' . $block->getUrl('adminhtml/system_config/edit', $params) . '">the MailPlus Connector configuration</a>'; ?>	
+	</p> 
 <?php }?>	
+
 
 </div>
