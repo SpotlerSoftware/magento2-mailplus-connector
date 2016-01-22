@@ -13,7 +13,7 @@
 <?php }?>
 
 
-<?php if (!$this->checkMailPlusApi($websiteId)) { ?>
+<?php if ($this->checkMailPlusApi($websiteId)) { ?>
 	<p>Connection to MailPlus API is OK.</p>
 <?php } else { ?>
 	<p>Could not connect to the MailPlus API. Please check the 
