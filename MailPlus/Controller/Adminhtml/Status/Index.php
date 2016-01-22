@@ -13,10 +13,12 @@ class Index extends \Magento\Backend\App\Action {
 	 */
 	protected $resultPageFactory;
 	
+	private $_version;
+	
 	/**
 	 *
 	 * @param Context $context        	
-	 * @param PageFactory $resultPageFactory        	
+	 * @param PageFactory $resultPageFactory
 	 */
 	public function __construct(Context $context, PageFactory $resultPageFactory) {
 		parent::__construct ( $context );
@@ -33,7 +35,6 @@ class Index extends \Magento\Backend\App\Action {
 		$resultPage = $this->resultPageFactory->create ();
 		$resultPage->setActiveMenu ( 'MailPlus_MailPlus::status' );
 		$resultPage->addBreadcrumb ( __ ( 'MailPlus Connector Status' ), __ ( 'MailPlus Connector Status' ) );
-		$resultPage->getConfig ()->getTitle ()->prepend ( __ ( 'MailPlus Connector' ) );
 		
 		return $resultPage;
 	}
