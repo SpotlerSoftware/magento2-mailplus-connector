@@ -15,7 +15,7 @@
     		"psr-4": {
       		"MailPlus\\MailPlus\\": ""
     		}
-  		}
+  		},
         
         "extra": {
             "map": [
