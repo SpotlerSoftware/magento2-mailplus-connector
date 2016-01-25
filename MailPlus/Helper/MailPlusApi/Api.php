@@ -4,19 +4,24 @@ namespace MailPlus\MailPlus\Helper\MailPlusApi;
 
 class Api extends \Magento\Framework\App\Helper\AbstractHelper {
 	const MP_API_HOST = 'https://restapi.mailplus.nl';
-	const API_CONTACT_PROPERTIES_LIST = '/integrationservice-1.1.0/contact/properties/list';
-	
+	const BASEURI = '/integrationservice-1.1.0';
+	const API_CONTACT_PROPERTIES_LIST = '/contact/properties/list';
+	const API_PRODUCT = '/product';
 	
 	protected $CONSUMER_KEY;
 	protected $CONSUMER_SECRET;
 	protected $LOG_REQUESTS;
 	
+	protected $_productHelper;
 	
-	public function __construct($consumerKey, $consumerSecret, $logRequests = false) {
+	public function __construct($consumerKey, $consumerSecret, $logRequests = false, \MailPlus\MailPlus\Helper\MailPlusApi\ProductHelper $productHelper) {
 		$this->CONSUMER_KEY = $consumerKey;
 		$this->CONSUMER_SECRET = $consumerSecret;
 		$this->LOG_REQUESTS = $logRequests;
+		
+		$this->_productHelper = $productHelper;
 	}
+	
 	private function getRestClient() {
 		$configOauth = array (
 				// 'callbackUrl' => Mage::getUrl('*/*/callback'),
@@ -47,12 +52,19 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper {
 	
 	public function getContactProperties() {
 		$client = $this->getRestClient();
-		$response = $client->restGet( self::API_CONTACT_PROPERTIES_LIST );
+		$response = $client->restGet(self::BASEURI . self::API_CONTACT_PROPERTIES_LIST);
 
 		if ($response->getStatus() == 200) {
 			return json_decode( $response->getBody() );
 		}
 		
 		return null;
+	}
+	
+	public function syncProduct($product) {
+		$client = $this->getRestClient();
+		
+		$data = $this->_productHelper->getProductData($product);
+		$response = $client->restPost(self::BASEURI . self::API_PRODUCT, json_encode($data));		
 	}
 } 
