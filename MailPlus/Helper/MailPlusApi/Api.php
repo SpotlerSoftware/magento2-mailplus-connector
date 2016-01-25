@@ -1,6 +1,6 @@
 <?php
 
-namespace MailPlus\MailPlus\Helper\MailPlus;
+namespace MailPlus\MailPlus\Helper\MailPlusApi;
 
 class Api extends \Magento\Framework\App\Helper\AbstractHelper {
 	const MP_API_HOST = 'https://restapi.mailplus.nl';

@@ -14,7 +14,7 @@
 * License for the specific language governing permissions and limitations
 * under the License.
 */
-namespace MailPlus\MailPlus\Helper\MailPlus;
+namespace MailPlus\MailPlus\Helper\MailPlusApi;
 /**
  * Fixes http://framework.zend.com/issues/browse/ZF-9840
  * Issue: Zend_Rest_Client::restPost forces Content-Type to be 'application/x-www-form-urlencoded'
