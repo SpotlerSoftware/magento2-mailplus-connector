@@ -14,6 +14,8 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper {
 	
 	protected $_productHelper;
 	
+	protected $_client = null;
+
 	public function __construct($consumerKey, $consumerSecret, $logRequests = false, \MailPlus\MailPlus\Helper\MailPlusApi\ProductHelper $productHelper) {
 		$this->CONSUMER_KEY = $consumerKey;
 		$this->CONSUMER_SECRET = $consumerSecret;
@@ -23,6 +25,10 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper {
 	}
 	
 	private function getRestClient() {
+		if ($this->_client) {
+			return $this->_client;
+		}
+		
 		$configOauth = array (
 				// 'callbackUrl' => Mage::getUrl('*/*/callback'),
 				// 'siteUrl' => $restBaseDomain, // no need for 2-way
@@ -47,6 +53,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper {
 		$client = new \Zend_Rest_Client( self::MP_API_HOST );
 		$client->setHttpClient( $httpClient );
 		
+		$this->_client = $client;
 		return $client;
 	}
 	
@@ -63,8 +70,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper {
 	
 	public function syncProduct($product) {
 		$client = $this->getRestClient();
-		
 		$data = $this->_productHelper->getProductData($product);
-		$response = $client->restPost(self::BASEURI . self::API_PRODUCT, json_encode($data));		
+		$response = $client->restPost(self::BASEURI . self::API_PRODUCT, json_encode($data));
 	}
 } 

@@ -3,8 +3,6 @@
 namespace MailPlus\MailPlus\Console\Command;
 
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -14,7 +12,7 @@ class SyncProductsCommand extends Command {
 	protected $_dataHelper;
 	protected $_productCollection;
 	
-	const PAGESIZE = 100;
+	const PAGESIZE = 200;
 	
 	public function __construct( \Magento\Framework\App\State $state,
 			\Magento\Store\Model\StoreManager $storeManager,
@@ -86,10 +84,10 @@ class SyncProductsCommand extends Command {
 		
 		while ($numDone == self::PAGESIZE) {
 			$numDone = 0;
-			$collection->clear()->setCurPage($curPage)->load();
+			$collection->clear()->setCurPage($curPage)->load()->addCategoryIds();
 
 			foreach ($collection as $product) {
-				$output->writeln ( '<info>Syncing productId: ' . $product->getId());
+				$output->write("<info>.</info>");
 			
 				$api->syncProduct($product);
 				$numDone++;

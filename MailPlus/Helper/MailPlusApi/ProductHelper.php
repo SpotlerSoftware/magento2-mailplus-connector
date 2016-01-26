@@ -17,17 +17,24 @@ class ProductHelper extends AbstractHelper {
 	protected $_ratingFactory;
 	
 	/**
+	 * @var \Magento\Review\Model\RatingFactory
+	 */
+	protected $_categoryFactory;
+
+	/**
 	 * @param \Magento\Framework\App\Helper\Context $context
 	 * @param \Magento\Framework\UrlInterface $urlBuilder
 	 * @param \Magento\Review\Model\RatingFactory $ratingFactory
 	 */
 	public function __construct(\Magento\Framework\App\Helper\Context $context,
 			\Magento\Framework\UrlInterface $urlBuilder,
-			\Magento\Review\Model\RatingFactory $ratingFactory) {
+			\Magento\Review\Model\RatingFactory $ratingFactory,
+			\Magento\Catalog\Model\ResourceModel\Category\Collection $categoryCollection) {
 		parent::__construct($context);
 
 		$this->_urlBuilder = $urlBuilder;
 		$this->_ratingFactory = $ratingFactory;
+		$this->_categoryCollection = $categoryCollection;
 	}
 	
 	/**
@@ -44,6 +51,38 @@ class ProductHelper extends AbstractHelper {
 		]);
 		
 	}
+	
+	public function getProductCategoryPath($product) {
+		$collection = $this->_categoryCollection
+			->addIdFilter($product->getCategoryIds())
+			->addAttributeToSelect('*')
+			->load();
+		
+		$category = '';
+		$catCount = 0;
+		$catWithLongestPath = null;
+		if ($collection->getSize() > 0) {
+			foreach($collection as $category) {
+				$currentCount = count(explode("/", $category->getPath()));
+				if ($currentCount > $catCount) {
+					$catWithLongestPath = $category;
+					$catCount = $currentCount;
+				}
+			}
+				
+			if ($catWithLongestPath != null) {
+				$parentCats = $category->getParentCategories($category);
+				$pathNames = Array();
+				foreach($parentCats as $category) {
+					$pathNames[] = $category->getName();
+				}
+				$category = implode("/", $pathNames);
+			}
+		}
+		
+		return $category;
+	}
+	
 	
 	public function getProductData($product) {
 		
@@ -66,10 +105,7 @@ class ProductHelper extends AbstractHelper {
 		 /*
 		  * TODO:
 		  *  - specifications
-		  *  - category 
 		  */
-		
-		$categoryPaths = array(); // TODO
 			 
 		$data = array (
 				'update' => TRUE,
@@ -79,7 +115,7 @@ class ProductHelper extends AbstractHelper {
 						'gtin' => $product->getId(),
 						'name' => $product->getName(),
 						'description' => $description,
-						'category' => $categoryPaths ? reset ( $categoryPaths ) : '',
+						'category' => $this->getProductCategoryPath($product),
 						'price' => round ( $product->getFinalPrice () * 100 ), // must be in cents
 						'oldPrice' => round ( $product->getPrice () * 100 ), // must be in cents
 						'link' => $product->getProductUrl (),
