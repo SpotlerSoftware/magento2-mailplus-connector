@@ -12,6 +12,13 @@ class Data extends AbstractHelper {
 	const CONFIG_CONSUMER_KEY = 'mailplus/general/consumer_key';
 	const CONFIG_CONSUMER_SECRET = 'mailplus/general/consumer_secret';
 
+	const CONFIG_SMALL_IMAGE_WIDTH = "mailplus/images/image_width_small";
+	const CONFIG_SMALL_IMAGE_HEIGHT = "mailplus/images/image_height_small";
+	const CONFIG_LARGE_IMAGE_WIDTH = "mailplus/images/image_width_large";
+	const CONFIG_LARGE_IMAGE_HEIGHT = "mailplus/images/image_height_large";
+	
+	const CONFIG_IMAGE_FORMAT = "mailplus/images/image_format";
+	
 	const CONFIG_DEBUG_LOGGING = 'mailplus/advanced/logging';
 	
 	/**

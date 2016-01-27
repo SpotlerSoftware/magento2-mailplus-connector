@@ -55,7 +55,41 @@
 				</field>
 			</group>
 
-			<group id="campaigns" translate="label" type="text" sortOrder="3" showInDefault="0" showInWebsite="1"
+			<group id="images" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1">
+				<label>Image Settings</label>
+				<field id="image_format" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+					showInStore="1">
+					<label>Format images</label>
+					<source_model>MailPlus\MailPlus\Model\System\Config\Image\Format</source_model>
+				</field>
+				
+				<field id="image_width_small" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+					showInStore="1">
+					<label>Small image width</label>
+					<validate>required-entry</validate>
+					<backend_model>MailPlus\MailPlus\Model\System\Config\Image\Size</backend_model>
+				</field>
+				<field id="image_height_small" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1"
+					showInStore="1">
+					<label>Small image height</label>
+					<validate>required-entry</validate>
+					<backend_model>MailPlus\MailPlus\Model\System\Config\Image\Size</backend_model>
+				</field>
+				<field id="image_width_large" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1"
+					showInStore="1">
+					<label>Large image width</label>
+					<validate>required-entry</validate>
+					<backend_model>MailPlus\MailPlus\Model\System\Config\Image\Size</backend_model>
+				</field>
+				<field id="image_height_large" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1"
+					showInStore="1">
+					<label>Large image height</label>
+					<validate>required-entry</validate>
+					<backend_model>MailPlus\MailPlus\Model\System\Config\Image\Size</backend_model>
+				</field>
+			</group>
+
+			<group id="campaigns" translate="label" type="text" sortOrder="4" showInDefault="0" showInWebsite="1"
 				showInStore="1">
 				<label>MailPlus Campaigns</label>
 				<field id="campaigns_newsletter" translate="label" type="select" sortOrder="1" showInDefault="0"
@@ -76,7 +110,8 @@
 
 			</group>
 
-			<group id="advanced" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1"
+
+			<group id="advanced" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1"
 				showInStore="1">
 				<label>Advanced</label>
 				<field id="logging" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1"
