@@ -8,14 +8,32 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class SyncProductsCommand extends Command {
 
+	/**
+	 * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+	 */
 	protected $_storeManager;
+	
+	/**
+	 * @param \MailPlus\MailPlus\Helper\Data $dataHelper
+	 */
 	protected $_dataHelper;
+	
+	/**
+	 * @param \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection
+	 */
 	protected $_productCollection;
 	
 	const PAGESIZE = 200;
 	
+	
+	/**
+	 * @param \Magento\Framework\App\State $state
+	 * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+	 * @param \MailPlus\MailPlus\Helper\Data $dataHelper
+	 * @param \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection
+	 */
 	public function __construct( \Magento\Framework\App\State $state,
-			\Magento\Store\Model\StoreManager $storeManager,
+			\Magento\Store\Model\StoreManagerInterface $storeManager,
 			\MailPlus\MailPlus\Helper\Data $dataHelper,
 			\Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection) {
 		parent::__construct();
@@ -29,18 +47,14 @@ class SyncProductsCommand extends Command {
 	}
 	
 	/**
-	 *
 	 * {@inheritdoc}
-	 *
 	 */
 	protected function configure() {
 		$this->setName ( 'mailplus:sync-products' )->setDescription ( 'Sync all products to MailPlus' );
 		parent::configure ();
 	}
 	/**
-	 *
 	 * {@inheritdoc}
-	 *
 	 */
 	public function execute(InputInterface $input, OutputInterface $output) {
 		$websites = $this->_storeManager->getWebsites ();
@@ -62,15 +76,22 @@ class SyncProductsCommand extends Command {
 				}
 				
 				$output->writeln ( '<info>Syncing products for storeview: ' . $store->getName () . '</info>' );
-				$this->syncProductsForStore($website->getId(), $store->getId(), $output);
+				$this->syncProductsForStore($store, $output);
 			}
 			
 		}
 	}
 	
-	protected function syncProductsForStore($websiteId, $storeId, $output) {
+	/**
+	 * 
+	 * @param \Magento\Store\Model\Store $store
+	 * @param \Symfony\Component\Console\Output\OutputInterface $outpuit
+	 */
+	protected function syncProductsForStore($store, $output) {
+		$this->_storeManager->setCurrentStore($store);
+		
 		$collection = $this->_productCollection
-			->addStoreFilter($storeId)
+			->addStoreFilter($store)
 			->addAttributeToSelect('*')
 			->setPageSize(self::PAGESIZE);
 		
@@ -80,7 +101,7 @@ class SyncProductsCommand extends Command {
 		/**
 		 * @var MailPlus\MailPlus\Helper\MailPlus\Api
 		 */
-		$api = $this->_dataHelper->getApiClient($websiteId);
+		$api = $this->_dataHelper->getApiClient($store->getWebsite()->getId());
 		
 		while ($numDone == self::PAGESIZE) {
 			$numDone = 0;
@@ -94,6 +115,7 @@ class SyncProductsCommand extends Command {
 			}
 			$curPage++;
 		}
+		$output->writeln("");
 		
 	}
 }

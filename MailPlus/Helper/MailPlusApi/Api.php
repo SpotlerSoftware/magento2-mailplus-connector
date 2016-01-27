@@ -71,6 +71,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper {
 	public function syncProduct($product) {
 		$client = $this->getRestClient();
 		$data = $this->_productHelper->getProductData($product);
+		
 		$response = $client->restPost(self::BASEURI . self::API_PRODUCT, json_encode($data));
 	}
 } 

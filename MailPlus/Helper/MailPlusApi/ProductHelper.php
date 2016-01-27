@@ -85,9 +85,8 @@ class ProductHelper extends AbstractHelper {
 	
 	
 	public function getProductData($product) {
-		
 		$externalId = $this->getExternalId($product);
-		$description = strip_tags($product->getShortDescription());
+		$description = strip_tags($product->getDescription());
 		if (empty($description)) {
 			$description = $product->getName();
 		}
