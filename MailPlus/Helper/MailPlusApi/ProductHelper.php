@@ -5,12 +5,7 @@ namespace MailPlus\MailPlus\Helper\MailPlusApi;
 use Magento\Framework\App\Helper\AbstractHelper;
 
 class ProductHelper extends AbstractHelper {
-	
-	/**
-	 * @var \Magento\Framework\UrlInterface
-	 */
-	protected $_urlBuilder;
-	
+		
 	/** 
 	 * @var \Magento\Review\Model\RatingFactory
 	 */
@@ -23,16 +18,14 @@ class ProductHelper extends AbstractHelper {
 
 	/**
 	 * @param \Magento\Framework\App\Helper\Context $context
-	 * @param \Magento\Framework\UrlInterface $urlBuilder
 	 * @param \Magento\Review\Model\RatingFactory $ratingFactory
+	 * @param \Magento\Catalog\Model\ResourceModel\Category\Collection $categoryCollection
 	 */
 	public function __construct(\Magento\Framework\App\Helper\Context $context,
-			\Magento\Framework\UrlInterface $urlBuilder,
 			\Magento\Review\Model\RatingFactory $ratingFactory,
 			\Magento\Catalog\Model\ResourceModel\Category\Collection $categoryCollection) {
 		parent::__construct($context);
-
-		$this->_urlBuilder = $urlBuilder;
+		
 		$this->_ratingFactory = $ratingFactory;
 		$this->_categoryCollection = $categoryCollection;
 	}
@@ -45,7 +38,7 @@ class ProductHelper extends AbstractHelper {
 	}
 	
 	public function getReviewUrl($product) {
-		return $this->_urlBuilder->getUrl('review/product/list', [
+		return $product->getStore()->getUrl('review/product/list', [
 						'id' => $product->getId(),
 						'category' => $product->getCategoryId()
 		]);
@@ -91,8 +84,8 @@ class ProductHelper extends AbstractHelper {
 			$description = $product->getName();
 		}
 		
-		$imageUrl = $this->_urlBuilder->getUrl('mailplus/image/get/', array('id' => $externalId, 'f' => 'n'));
-		$imageLargeUrl = $this->_urlBuilder->getUrl('mailplus/image/get/', array('id' => $externalId, 'f' => 'l'));
+		$imageUrl = $product->getStore()->getUrl('mailplus/image/get/', array('id' => $externalId, 'f' => 'n'));
+		$imageLargeUrl = $product->getStore()->getUrl('mailplus/image/get/', array('id' => $externalId, 'f' => 'l'));
 		
 		$storeName = $product->getStore()->getWebsite()->getName() .
 			' - ' . $product->getStore()->getGroup()->getName() .
