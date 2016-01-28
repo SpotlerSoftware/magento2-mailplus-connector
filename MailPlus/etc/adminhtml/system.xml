@@ -123,5 +123,29 @@
 			</group>
 
 		</section>
+		
+		<section id="mapping" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>MailPlus Connector Mapping</label>
+			<tab>MailPlus</tab>
+			<resource>MailPlus_MailPlus::system_config_mapping</resource>
+
+			<group id="config_per_site" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0"
+				showInStore="1">
+				<label>Configure per site or store view</label>
+				<field id="sync_synchronize" translate="label" type="label" sortOrder="1" showInDefault="1" showInWebsite="0"
+					showInStore="1">
+					<label>Please configure the MailPlus Connector settings per site</label>
+				</field>
+			</group>
+			
+			<group id="site_mapping" translate="label" type="text" sortOrder="0" showInDefault="0" showInWebsite="1"
+				showInStore="0" >
+				
+				<label>Mapping</label>
+			
+				 <frontend_model>MailPlus\MailPlus\Block\System\Config\Form\Fieldset\Mapping</frontend_model>
+			</group>
+			
+		</section>
 	</system>
 </config>

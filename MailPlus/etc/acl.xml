@@ -5,19 +5,17 @@
 			<resource id="Magento_Backend::admin">
 				<resource id="Magento_Backend::system">
 					<resource id="MailPlus_MailPlus::menu" title="MailPlus connector">
-						<resource id="MailPlus_MailPlus::status" title="Status">
-
-						</resource>
+						<resource id="MailPlus_MailPlus::status" title="Status" />
 					</resource>
 				</resource>
 				<resource id="Magento_Backend::stores">
 					<resource id="Magento_Backend::stores_settings">
 						<resource id="Magento_Config::config">
-							<resource id="MailPlus_MailPlus::system_config" title="Settings" />
+							<resource id="MailPlus_MailPlus::system_config" />
+							<resource id="MailPlus_MailPlus::system_config_mapping" />
 						</resource>
 					</resource>
 				</resource>
-
 			</resource>
 		</resources>
 	</acl>
