@@ -1,27 +1,11 @@
-get-composer:
-  cmd.run:
-    - require:
-      - pkg: php
-    - name: 'curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer'
-    - unless: test -f /usr/local/bin/composer
-    - cwd: /root/
-
-
-magento2-community-edition:
-  cmd.run:
-    - name: |
-        composer config -g http-basic.repo.magento.com 96fce2b01f0952d09208515bdccb1b77 bac7e70f3b3e5c783698de607f7c234b
-        composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html/magento2
-    - require:
-      - cmd: get-composer
-      - pkg: git
-    - unless: test -f /var/www/html/magento2/composer.lock
-
-magento-rights:
+magento-archive:
+  archive.extracted:
+    - name: /var/www/html
+    - source: salt://magento2/Magento-CE-2.0.2-2016-01-28-02-24-15.tar.gz
+    - archive_format: tar
+    - if_missing: /var/www/html/bin
   file.directory:
-    - require:
-       - cmd: magento2-community-edition
-    - name: '/var/www/html/magento2'
+    - name: '/var/www/html'
     - user: www-data
     - group: www-data
     - file_mode: 777
@@ -31,16 +15,42 @@ magento-rights:
       - group
       - mode
 
+magento-rights:
+  file.directory:
+    - name: '/var/www/html'
+    - user: www-data
+    - group: www-data
+    - file_mode: 777
+    - dir_mode: 777
+    - recurse:
+      - user
+      - group
+      - mode
+    - watch:
+       - cmd: magento-install
+       - cmd: magento-static
+
 magento-cli:
   cmd.run:
-    - name: 'ln -s /var/www/html/magento2/bin/magento /usr/local/bin/magento'
+    - name: 'ln -s /var/www/html/bin/magento /usr/local/bin/magento'
     - require:
-      - file: magento-rights
+           - archive: magento-archive
     - unless: test -f /usr/local/bin/magento
 
 magento-install:
   cmd.run:
-    - name: 'php /var/www/html/magento2/bin/magento setup:install --admin-firstname=dev --admin-lastname=dev --admin-email=test@mailplus.com --admin-user=admin --admin-password=Admin1234 --db-password=root'
+    - name: 'php /var/www/html/bin/magento setup:install --use-rewrites=1 --backend-frontname=admin --base-url=http://magento.dev:8080/ --admin-firstname=dev --admin-lastname=dev --admin-email=test@mailplus.com --admin-user=admin --admin-password=Admin1234 --db-password=root'
+    - user: www-data
     - require:
           - cmd: magento-cli
-    - unless: test -f /var/www/html/magento2/var/cache
+    - unless: test -f /var/www/html/var/cache
+
+magento-static:
+  cmd.run:
+    - name: 'php /var/www/html/bin/magento setup:static-content:deploy'
+    - user: www-data
+    - require:
+          - cmd: magento-install
+
+/var/www/html/index.html:
+  file.absent

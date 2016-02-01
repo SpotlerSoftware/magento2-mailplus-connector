@@ -10,7 +10,16 @@ php:
         - php5-gd
         - php5-cli
         - php5-json
+
+
+php5enmod mcrypt:
   cmd.run:
-    - name: |
-        php5enmod mcrypt
-        php5enmod json
+    - onlyif: type php5enmod
+    - require:
+      - pkg: php
+
+php5enmod json:
+  cmd.run:
+    - onlyif: type php5enmod
+    - require:
+      - pkg: php

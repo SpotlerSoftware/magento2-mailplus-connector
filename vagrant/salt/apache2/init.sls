@@ -7,11 +7,17 @@ sudo a2enmod rewrite:
 apache2:
   pkg.installed:
     - pkgs:
-      - apache2: '2.4.7-1ubuntu4.8'
+      - apache2
+  file.managed:
+    - name: /etc/apache2/apache2.conf
+    - source:
+          - salt://apache2/apache2.conf
   service.running:
       - name: apache2
       - watch:
             - pkg: apache2
+            - file: apache2
             - cmd: sudo a2enmod rewrite
-            - cmd: php
+            - pkg: php
+            - cmd: php5enmod mcrypt
 

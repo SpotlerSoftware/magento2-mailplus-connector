@@ -4,18 +4,6 @@ Vagrant.configure(2) do |config|
 	config.vm.provider "virtualbox" do |vb|
 		vb.memory = "2048"
 	end
-	#config.vm.provision "shell", inline: <<-SHELL
-	# sudo apt-get update
-	# sudo apt-get install -y apache2
-	# sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-	# sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-	# sudo php5enmod mcrypt
-	# mysql -u root -proot -e 'create database magento'
-	# sudo cp /vagrant/Magento-CE-2.0.0+Samples-2015-11-17-06-29-31.tar.bz2 /var/www/html
-	# cd /var/www/html && sudo tar -xjf Magento-CE-2.0.0+Samples-2015-11-17-06-29-31.tar.bz2
-	# cd /var/www/html && chown www-data * -R
-	# sudo service apache2 restart
-	#SHELL
 
 
 	# Salt provisioning
