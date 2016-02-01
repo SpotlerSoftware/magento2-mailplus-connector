@@ -1,9 +1,26 @@
-magento-archive:
-  archive.extracted:
-    - name: /var/www/html
-    - source: salt://magento2/Magento-CE-2.0.2-2016-01-28-02-24-15.tar.gz
-    - archive_format: tar
-    - if_missing: /var/www/html/bin
+get-composer:
+  cmd.run:
+    - require:
+      - pkg: php
+    - name: 'curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer'
+    - unless: test -f /usr/local/bin/composer
+    - cwd: /root/
+
+
+/var/www/html/index.html:
+  file.absent
+
+
+magento2-community-edition:
+  cmd.run:
+    - name: |
+        composer config -g http-basic.repo.magento.com 96fce2b01f0952d09208515bdccb1b77 bac7e70f3b3e5c783698de607f7c234b
+        composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html
+    - require:
+      - cmd: get-composer
+      - pkg: git
+      - file: /var/www/html/index.html
+    - unless: test -f /var/www/html/magento2/composer.lock
   file.directory:
     - name: '/var/www/html'
     - user: www-data
@@ -34,7 +51,7 @@ magento-cli:
   cmd.run:
     - name: 'ln -s /var/www/html/bin/magento /usr/local/bin/magento'
     - require:
-           - archive: magento-archive
+           - file: magento2-community-edition
     - unless: test -f /usr/local/bin/magento
 
 magento-install:
@@ -51,6 +68,3 @@ magento-static:
     - user: www-data
     - require:
           - cmd: magento-install
-
-/var/www/html/index.html:
-  file.absent
