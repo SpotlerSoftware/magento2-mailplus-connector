@@ -18,6 +18,5 @@ apache2:
             - pkg: apache2
             - file: apache2
             - cmd: sudo a2enmod rewrite
-            - pkg: php
-            - cmd: php5enmod mcrypt
+            - sls: php
 

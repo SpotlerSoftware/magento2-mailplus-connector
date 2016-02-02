@@ -15,34 +15,35 @@ magento2-community-edition:
   cmd.run:
     - name: |
         composer config -g http-basic.repo.magento.com 96fce2b01f0952d09208515bdccb1b77 bac7e70f3b3e5c783698de607f7c234b
-        composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html
+        sudo composer -v create-project --prefer-dist -s dev --repository-url=http://nexus.spotler.com/satis/magento/ magento/project-community-edition /var/www/html/
     - require:
       - cmd: get-composer
       - pkg: git
       - file: /var/www/html/index.html
     - unless: test -f /var/www/html/magento2/composer.lock
+
   file.directory:
     - name: '/var/www/html'
-    - user: www-data
-    - group: www-data
     - file_mode: 777
     - dir_mode: 777
+    - user: www-data
+    - group: www-data
     - recurse:
+      - mode
       - user
       - group
-      - mode
 
 magento-rights:
   file.directory:
     - name: '/var/www/html'
-    - user: www-data
-    - group: www-data
     - file_mode: 777
     - dir_mode: 777
+    - user: www-data
+    - group: www-data
     - recurse:
+      - mode
       - user
       - group
-      - mode
     - watch:
        - cmd: magento-install
        - cmd: magento-static
