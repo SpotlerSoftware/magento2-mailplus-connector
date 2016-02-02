@@ -5,53 +5,60 @@
  */
 namespace MailPlus\MailPlus\Controller\Image;
 
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Catalog\Helper\Image;
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Controller\Result\ForwardFactory;
+use Magento\Framework\Controller\Result\RedirectFactory;
 use MailPlus\MailPlus\Helper\Data;
 use Magento\Store\Model\ScopeInterface;
 
-class Get extends \Magento\Framework\App\Action\Action {
+class Get extends Action {
 	
 	const FORMAT_NORMAL = 'n';
 	const FORMAT_LARGE = 'l';
 		
 	/**
-	 * @var \Magento\Catalog\Helper\Image
+	 * @var Image
 	 */
 	protected $_imageHelper;
 	
 	/**
-	 * @var \Magento\Framework\Controller\Result\ForwardFactory
+	 * @var ForwardFactory
 	 */
 	protected $_forwardFactory;
 	
 	/**
-	 * @var \Magento\Framework\Controller\Result\RedirectFactory
+	 * @var RedirectFactory
 	 */
 	protected $_redirectFactory;
 	
 	/**
-	 * @var \Magento\Catalog\Api\ProductRepositoryInterface
+	 * @var ProductRepositoryInterface
 	 */
 	protected $_productRepository;
 	
 	/**
-	 * @var \Magento\Framework\App\Config\ScopeConfigInterface 
+	 * @var ScopeConfigInterface
 	 */
 	protected $_scopeConfig;
 	
 	/**
-	 * @param \Magento\Framework\App\Action\Context $context
-	 * @param \Magento\Catalog\Helper\Image $imageHelper
-	 * @param \Magento\Framework\Controller\Result\ForwardFactory $forwardFactory
-	 * @param \Magento\Framework\Controller\Result\RedirectFactory $redirectFactory
-	 * @param \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
-	 * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+	 * @param Context $context
+	 * @param Image $imageHelper
+	 * @param ForwardFactory $forwardFactory
+	 * @param RedirectFactory $redirectFactory
+	 * @param ProductRepositoryInterface $productRepository
+	 * @param ScopeConfigInterface $scopeConfig
 	 */
-	public function __construct(\Magento\Framework\App\Action\Context $context,
-			\Magento\Catalog\Helper\Image $imageHelper,
-			\Magento\Framework\Controller\Result\ForwardFactory $forwardFactory,
-			\Magento\Framework\Controller\Result\RedirectFactory $redirectFactory,
-			\Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
-			\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig) {
+	public function __construct(Context $context,
+								Image $imageHelper,
+								ForwardFactory $forwardFactory,
+								RedirectFactory $redirectFactory,
+								ProductRepositoryInterface $productRepository,
+								ScopeConfigInterface $scopeConfig) {
 		parent::__construct($context);
 		
 		$this->_forwardFactory = $forwardFactory;

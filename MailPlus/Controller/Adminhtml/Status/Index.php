@@ -2,10 +2,11 @@
 
 namespace MailPlus\MailPlus\Controller\Adminhtml\Status;
 
+use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
-class Index extends \Magento\Backend\App\Action {
+class Index extends Action {
 	
 	/**
 	 *

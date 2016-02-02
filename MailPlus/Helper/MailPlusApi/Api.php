@@ -2,7 +2,10 @@
 
 namespace MailPlus\MailPlus\Helper\MailPlusApi;
 
-class Api extends \Magento\Framework\App\Helper\AbstractHelper {
+use Magento\Framework\App\Helper\AbstractHelper;
+use MailPlus\MailPlus\Helper\MailPlusApi\ProductHelper;
+
+class Api extends AbstractHelper {
 	const MP_API_HOST = 'https://restapi.mailplus.nl';
 	const BASEURI = '/integrationservice-1.1.0';
 	const API_CONTACT_PROPERTIES_LIST = '/contact/properties/list';
@@ -16,7 +19,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper {
 	
 	protected $_client = null;
 
-	public function __construct($consumerKey, $consumerSecret, $logRequests = false, \MailPlus\MailPlus\Helper\MailPlusApi\ProductHelper $productHelper) {
+	public function __construct($consumerKey, $consumerSecret, $logRequests = false, ProductHelper $productHelper) {
 		$this->CONSUMER_KEY = $consumerKey;
 		$this->CONSUMER_SECRET = $consumerSecret;
 		$this->LOG_REQUESTS = $logRequests;

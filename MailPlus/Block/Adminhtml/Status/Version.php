@@ -3,6 +3,8 @@
 namespace MailPlus\MailPlus\Block\Adminhtml\Status;
 
 use Magento\Backend\Block\Template;
+use Magento\Framework\Module\ModuleList;
+use MailPlus\MailPlus\Helper\Data;
 
 class Version extends Template {
 	
@@ -12,10 +14,10 @@ class Version extends Template {
 	/**
 	 *
 	 * @param Template\Context $context
-	 * @param \MailPlus\MailPlus\Helper\Data $dataHelper        	
+	 * @param Data $dataHelper
 	 * @param array $data        	
 	 */
-	public function __construct(Template\Context $context, \MailPlus\MailPlus\Helper\Data $dataHelper, \Magento\Framework\Module\ModuleList $moduleList, array $data = []) {
+	public function __construct(Template\Context $context, Data $dataHelper, ModuleList $moduleList, array $data = []) {
 		parent::__construct ( $context, $data );
 		
 		$this->_version = $moduleList->getOne('MailPlus_MailPlus')['setup_version'];

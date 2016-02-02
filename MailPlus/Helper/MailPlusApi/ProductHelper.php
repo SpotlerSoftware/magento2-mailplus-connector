@@ -2,28 +2,33 @@
 
 namespace MailPlus\MailPlus\Helper\MailPlusApi;
 
+use Magento\Catalog\Model\Product\Attribute\Source\Status;
+use Magento\Catalog\Model\Product\Visibility;
+use Magento\Catalog\Model\ResourceModel\Category\Collection;
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
+use Magento\Review\Model\RatingFactory;
 
 class ProductHelper extends AbstractHelper {
 		
 	/** 
-	 * @var \Magento\Review\Model\RatingFactory
+	 * @var RatingFactory
 	 */
 	protected $_ratingFactory;
 	
 	/**
-	 * @var \Magento\Review\Model\RatingFactory
+	 * @var RatingFactory
 	 */
 	protected $_categoryFactory;
 
 	/**
-	 * @param \Magento\Framework\App\Helper\Context $context
-	 * @param \Magento\Review\Model\RatingFactory $ratingFactory
-	 * @param \Magento\Catalog\Model\ResourceModel\Category\Collection $categoryCollection
+	 * @param Context $context
+	 * @param RatingFactory $ratingFactory
+	 * @param Collection $categoryCollection
 	 */
-	public function __construct(\Magento\Framework\App\Helper\Context $context,
-			\Magento\Review\Model\RatingFactory $ratingFactory,
-			\Magento\Catalog\Model\ResourceModel\Category\Collection $categoryCollection) {
+	public function __construct(Context $context,
+								RatingFactory $ratingFactory,
+								Collection $categoryCollection) {
 		parent::__construct($context);
 		
 		$this->_ratingFactory = $ratingFactory;
@@ -91,8 +96,8 @@ class ProductHelper extends AbstractHelper {
 			' - ' . $product->getStore()->getGroup()->getName() .
 			' - ' . $product->getStore()->getName();
 		
-		$visible = \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED == $product->getStatus() &&
-			 \Magento\Catalog\Model\Product\Visibility::VISIBILITY_NOT_VISIBLE != $product->getVisilibity();
+		$visible = Status::STATUS_ENABLED == $product->getStatus() &&
+			 Visibility::VISIBILITY_NOT_VISIBLE != $product->getVisilibity();
 		
 		 /*
 		  * TODO:

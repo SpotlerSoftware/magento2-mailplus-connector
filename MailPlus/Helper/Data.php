@@ -2,10 +2,12 @@
 
 namespace MailPlus\MailPlus\Helper;
 
+use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
+use MailPlus\MailPlus\Helper\MailPlusApi\ApiFactory;
 
 class Data extends AbstractHelper {
 	const CONFIG_ENABLED = 'mailplus/general/enabled';
@@ -28,12 +30,12 @@ class Data extends AbstractHelper {
 	protected $_scopeConfig;
 	
 	/**
-	 *	@var \Magento\Catalog\Model\ResourceModel\Product\Collection 
+	 *	@var Collection
 	 */
 	protected $_productCollection;
 	
 	/**
-	 * @var \MailPlus\MailPlus\Helper\MailPlusApi\ApiFactory
+	 * @var ApiFactory
 	 */
 	protected $_apiFactory;
 	
@@ -43,9 +45,9 @@ class Data extends AbstractHelper {
 	 * @param ScopeConfigInterface $scopeConfig        	
 	 */
 	public function __construct(Context $context, ScopeConfigInterface $scopeConfig,
-			\Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection,
+			Collection $productCollection,
 			/* A Factory is automaticly created when it does not exists! */
-			\MailPlus\MailPlus\Helper\MailPlusApi\ApiFactory $apiFactory) {
+			ApiFactory $apiFactory) {
 		parent::__construct ( $context );
 		$this->_scopeConfig = $scopeConfig;
 		$this->_productCollection = $productCollection;
