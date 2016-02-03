@@ -91,8 +91,7 @@ class ConfigurationDataHelper extends AbstractHelper {
 		// Use the automaticly created factory to create an Api client 
 		return $this->_apiFactory->create(array(
 				'consumerKey' => $key,
-				'consumerSecret' => $secret,
-				'logRequests' => false));
+				'consumerSecret' => $secret));
 	}
 	
 	

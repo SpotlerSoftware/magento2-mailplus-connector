@@ -13,16 +13,14 @@ class Api extends AbstractHelper {
 	
 	protected $CONSUMER_KEY;
 	protected $CONSUMER_SECRET;
-	protected $LOG_REQUESTS;
 	
 	protected $_productHelper;
 	
 	protected $_client = null;
 
-	public function __construct(Context $context, $consumerKey, $consumerSecret, $logRequests = false, ProductHelper $productHelper) {
+	public function __construct(Context $context, $consumerKey, $consumerSecret, ProductHelper $productHelper) {
 		$this->CONSUMER_KEY = $consumerKey;
 		$this->CONSUMER_SECRET = $consumerSecret;
-		$this->LOG_REQUESTS = $logRequests;
 		
 		$this->_productHelper = $productHelper;
 		parent::__construct($context);
@@ -34,8 +32,6 @@ class Api extends AbstractHelper {
 		}
 		
 		$configOauth = array (
-				// 'callbackUrl' => Mage::getUrl('*/*/callback'),
-				// 'siteUrl' => $restBaseDomain, // no need for 2-way
 				'requestScheme' => \Zend_Oauth::REQUEST_SCHEME_HEADER,
 				'consumerKey' => $this->CONSUMER_KEY,
 				'consumerSecret' => $this->CONSUMER_SECRET,

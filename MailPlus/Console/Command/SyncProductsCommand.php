@@ -63,12 +63,10 @@ class SyncProductsCommand extends Command {
 	public function execute(InputInterface $input, OutputInterface $output) {
 		$websites = $this->_storeManager->getWebsites ();
 		foreach ( $websites as $website ) {
-			$apiClient = $this->_dataHelper->getApiClient($website->getId());
-			if ($apiClient == null) {
+			if($this->_dataHelper->isEnabledForSite($website->getId())){
 				$output->writeln ( '<info>Skipping website: ' . $website->getName () . '. MailPlus API not configured.</info>' );
 				continue;
 			}
-			
 			$output->writeln ( '<info>Syncing products for website: ' . $website->getName () . '</info>' );
 			
 			$stores = $website->getStores();
@@ -78,7 +76,6 @@ class SyncProductsCommand extends Command {
 					$output->writeln ( '<info>Skipping ' . $store->getName() . '. MailPlus connector not enabled.</info>' );
 					continue;
 				}
-				
 				$output->writeln ( '<info>Syncing products for storeview: ' . $store->getName () . '</info>' );
 				$this->syncProductsForStore($store, $output);
 			}
@@ -107,7 +104,8 @@ class SyncProductsCommand extends Command {
 		 * @var MailPlus\MailPlus\Helper\MailPlus\Api
 		 */
 		$api = $this->_dataHelper->getApiClient($store->getWebsite()->getId());
-		
+
+		//numDone will only reach PAGESIZE if there could be a next page.
 		while ($numDone == self::PAGESIZE) {
 			$numDone = 0;
 			$collection->clear()->setCurPage($curPage)->load()->addCategoryIds();
