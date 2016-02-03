@@ -13,4 +13,10 @@
             </argument>
         </arguments>
     </type>
+    
+    <preference for="MailPlus\MailPlus\Api\SubscribersInterface" type="MailPlus\MailPlus\Model\Subscribers" />        
+    <preference for="MailPlus\MailPlus\Api\Data\SubscriberInterface" type="Magento\Newsletter\Model\Subscriber" />
+        
+    <preference for="MailPlus\MailPlus\Api\Data\\SubscriberSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    
 </config>
