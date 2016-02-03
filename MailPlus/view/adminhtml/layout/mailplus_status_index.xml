@@ -4,7 +4,7 @@
 	<body>
 
 		<referenceContainer name="page.main.actions">
-			<block name="mailplus.siteswitcher" class="Magento\Backend\Block\Store\Switcher">
+			<block name="mailplus.site_switcher" class="Magento\Backend\Block\Store\Switcher">
 				<arguments>
 					<argument name="switch_websites" xsi:type="string">1</argument>
 					<argument name="switch_store_groups" xsi:type="string">0</argument>
@@ -12,7 +12,7 @@
 				</arguments>
 			</block>
 			<block class="Magento\Backend\Block\Template" name="refresh_status" after="store_switcher"
-				template="MailPlus_MailPlus::status/refreshstatus.phtml" />
+				template="MailPlus_MailPlus::status/refresh_status.phtml" />
 
 
 		</referenceContainer>

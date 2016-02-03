@@ -130,9 +130,9 @@ class ProductHelper extends AbstractHelper {
 		
 		$ratingSummary = $this->_ratingFactory->create()->getEntitySummary($product->getId());
 		if ($ratingSummary->getSum() > 0) {
-			$ratingPerc = $ratingSummary->getSum() / $ratingSummary->getCount();
+			$ratingPercentage = $ratingSummary->getSum() / $ratingSummary->getCount();
 			// Normalize to 0-5
-			$data['product']['ratingValue'] = 5 * ($ratingPerc / 100); 
+			$data['product']['ratingValue'] = 5 * ($ratingPercentage / 100);
 		}
 		
 		if ($data['product']['price'] == $data['product']['oldPrice']) {

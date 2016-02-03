@@ -31,7 +31,7 @@ class TokenAccess extends \Zend_Oauth_Token_Access
 	 * @param  null|string $uri
 	 * @param  null|array|Zend_Config $config
 	 * @param  bool $excludeCustomParamsFromHeader
-	 * @return Mailplus_Oauth_Client
+	 * @return OauthClient
 	 */
 	public function getHttpClient(array $oauthOptions, $uri = NULL, $config = NULL, $excludeCustomParamsFromHeader = TRUE)
 	{

@@ -7,7 +7,7 @@ use \Magento\Framework\App\Helper\Context;
 
 class Api extends AbstractHelper {
 	const MP_API_HOST = 'https://restapi.mailplus.nl';
-	const BASEURI = '/integrationservice-1.1.0';
+	const BASE_URI = '/integrationservice-1.1.0';
 	const API_CONTACT_PROPERTIES_LIST = '/contact/properties/list';
 	const API_PRODUCT = '/product';
 	
@@ -63,7 +63,7 @@ class Api extends AbstractHelper {
 	
 	public function getContactProperties() {
 		$client = $this->getRestClient();
-		$response = $client->restGet(self::BASEURI . self::API_CONTACT_PROPERTIES_LIST);
+		$response = $client->restGet(self::BASE_URI . self::API_CONTACT_PROPERTIES_LIST);
 
 		if ($response->getStatus() == 200) {
 			return json_decode( $response->getBody() );
@@ -76,6 +76,6 @@ class Api extends AbstractHelper {
 		$client = $this->getRestClient();
 		$data = $this->_productHelper->getProductData($product);
 		
-		$client->restPost(self::BASEURI . self::API_PRODUCT, json_encode($data));
+		$client->restPost(self::BASE_URI . self::API_PRODUCT, json_encode($data));
 	}
 } 

@@ -1,6 +1,6 @@
 <?php
 
-namespace MailPlus\MailPlus\Block\System\Config\Form\Fieldset;
+namespace MailPlus\MailPlus\Block\System\Config\Form\FieldSet;
 
 use Magento\Backend\Block\Context;
 use Magento\Backend\Model\Auth\Session;
@@ -114,8 +114,6 @@ class Mapping extends FieldSet {
 		} else {
 			$data = 3;
 		}
-
-		$element = $this->_getDummyElement();
 
 		$field = $fieldset->addField(
 				$moduleName,

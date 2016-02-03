@@ -7,7 +7,7 @@ use Magento\Framework\Option\ArrayInterface;
 class Synchronize implements ArrayInterface
 {
     const ALL      = "all";
-    const PRODUCTS = "producs";
+    const PRODUCTS = "products";
  
     public function toOptionArray()
     {   	
