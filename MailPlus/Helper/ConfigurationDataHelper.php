@@ -9,7 +9,7 @@ use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
 use MailPlus\MailPlus\Helper\MailPlusApi\ApiFactory;
 
-class Data extends AbstractHelper {
+class ConfigurationDataHelper extends AbstractHelper {
 	const CONFIG_ENABLED = 'mailplus/general/enabled';
 	const CONFIG_CONSUMER_KEY = 'mailplus/general/consumer_key';
 	const CONFIG_CONSUMER_SECRET = 'mailplus/general/consumer_secret';

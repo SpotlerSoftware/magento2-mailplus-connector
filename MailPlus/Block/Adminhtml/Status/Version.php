@@ -4,25 +4,26 @@ namespace MailPlus\MailPlus\Block\Adminhtml\Status;
 
 use Magento\Backend\Block\Template;
 use Magento\Framework\Module\ModuleList;
-use MailPlus\MailPlus\Helper\Data;
+use MailPlus\MailPlus\Helper\ConfigurationDataHelper;
 
 class Version extends Template {
 	
-	private $_dataHelper;
+	private $_configuration;
 	private $_version;
-	
+
 	/**
 	 *
 	 * @param Template\Context $context
-	 * @param Data $dataHelper
-	 * @param array $data        	
+	 * @param ConfigurationDataHelper $configuration
+	 * @param ModuleList $moduleList
+	 * @param array $data
 	 */
-	public function __construct(Template\Context $context, Data $dataHelper, ModuleList $moduleList, array $data = []) {
+	public function __construct(Template\Context $context, ConfigurationDataHelper $configuration, ModuleList $moduleList, array $data = []) {
 		parent::__construct ( $context, $data );
 		
 		$this->_version = $moduleList->getOne('MailPlus_MailPlus')['setup_version'];
 		
-		$this->_dataHelper = $dataHelper;
+		$this->_configuration = $configuration;
 	}
 	
 	public function _prepareLayout() {
@@ -35,7 +36,7 @@ class Version extends Template {
 	}
 	
 	public function getConsumerKey() {
-		return $this->_dataHelper->getConsumerKey();
+		return $this->_configuration->getConsumerKey();
 	}
 	
 	public function getCurrentWebsite() {
@@ -48,15 +49,19 @@ class Version extends Template {
 	}
 	
 	public function isEnabledForSite($siteId) {
-		return $this->_dataHelper->isEnabledForSite($siteId);
+		return $this->_configuration->isEnabledForSite($siteId);
 	}
 	
 	public function checkMailPlusApi($websiteId) {
 		/**
 		 * 
-		 * @var MailPlus\MailPlus\Helper\MailPlus\Api
+		 * @var MailPlus\MailPlus\Helper\MailPlusApi\Api
 		 */
-		$api = $this->_dataHelper->getApiClient($websiteId);
+		if(!$this->_configuration->isEnabledForSite($websiteId)){
+			return false;
+		}
+		$api = $this->_configuration->getApiClient($websiteId);
+
 		$props = $api->getContactProperties();
 
 		if ($props) {

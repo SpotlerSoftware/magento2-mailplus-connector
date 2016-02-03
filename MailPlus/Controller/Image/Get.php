@@ -12,7 +12,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Controller\Result\ForwardFactory;
 use Magento\Framework\Controller\Result\RedirectFactory;
-use MailPlus\MailPlus\Helper\Data;
+use MailPlus\MailPlus\Helper\ConfigurationDataHelper;
 use Magento\Store\Model\ScopeInterface;
 
 class Get extends Action {
@@ -93,16 +93,16 @@ class Get extends Action {
 		$height = 145;
 		switch ($format) {
 			case self::FORMAT_NORMAL :
-				$width = $this->_scopeConfig->getValue(Data::CONFIG_SMALL_IMAGE_WIDTH, ScopeInterface::SCOPE_STORE, $storeId);
-				$height = $this->_scopeConfig->getValue(Data::CONFIG_SMALL_IMAGE_HEIGHT, ScopeInterface::SCOPE_STORE, $storeId);
+				$width = $this->_scopeConfig->getValue(ConfigurationDataHelper::CONFIG_SMALL_IMAGE_WIDTH, ScopeInterface::SCOPE_STORE, $storeId);
+				$height = $this->_scopeConfig->getValue(ConfigurationDataHelper::CONFIG_SMALL_IMAGE_HEIGHT, ScopeInterface::SCOPE_STORE, $storeId);
 				break;
 			CASE self::FORMAT_LARGE :
-				$width = $this->_scopeConfig->getValue(Data::CONFIG_LARGE_IMAGE_WIDTH, ScopeInterface::SCOPE_STORE, $storeId);
-				$height = $this->_scopeConfig->getValue(Data::CONFIG_LARGE_IMAGE_HEIGHT, ScopeInterface::SCOPE_STORE, $storeId);
+				$width = $this->_scopeConfig->getValue(ConfigurationDataHelper::CONFIG_LARGE_IMAGE_WIDTH, ScopeInterface::SCOPE_STORE, $storeId);
+				$height = $this->_scopeConfig->getValue(ConfigurationDataHelper::CONFIG_LARGE_IMAGE_HEIGHT, ScopeInterface::SCOPE_STORE, $storeId);
 				break;
 		}
 				
-		$keepFrame = 1 == $this->_scopeConfig->getValue(Data::CONFIG_IMAGE_FORMAT, ScopeInterface::SCOPE_STORE, $storeId);
+		$keepFrame = 1 == $this->_scopeConfig->getValue(ConfigurationDataHelper::CONFIG_IMAGE_FORMAT, ScopeInterface::SCOPE_STORE, $storeId);
 		$image = $this->_imageHelper->init($product, 'product_page_image_medium');		
 		$url = $image->keepFrame($keepFrame)->resize($width, $height)->getUrl();
 		return $this->_redirectFactory->create()->setUrl($url);
