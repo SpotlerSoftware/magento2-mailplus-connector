@@ -62,11 +62,6 @@ class Version extends Template {
 		}
 		$api = $this->_configuration->getApiClient($websiteId);
 
-		$props = $api->getContactProperties();
-
-		if ($props) {
-			return true;
-		}
-		return false;
+		return $api->getContactProperties() != null;
 	}
 }

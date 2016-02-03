@@ -85,11 +85,12 @@ class SyncProductsCommand extends Command {
 			
 		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param \Magento\Store\Model\Store $store
-	 * @param \Symfony\Component\Console\Output\OutputInterface $outpuit
+	 * @param $output
+	 * @internal param OutputInterface $outpuit
 	 */
 	protected function syncProductsForStore($store, $output) {
 		$this->_storeManager->setCurrentStore($store);

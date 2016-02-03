@@ -34,9 +34,11 @@ class ProductHelper extends AbstractHelper {
 		$this->_ratingFactory = $ratingFactory;
 		$this->_categoryCollection = $categoryCollection;
 	}
-	
+
 	/**
 	 * \Magento\Catalog\Model\Product $product
+	 * @param $product
+	 * @return string
 	 */
 	public function getExternalId($product) {
 		return $product->getStoreId () . '-' . $product->getId ();

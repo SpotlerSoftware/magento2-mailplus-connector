@@ -14,8 +14,6 @@ class Index extends Action {
 	 */
 	protected $resultPageFactory;
 	
-	private $_version;
-	
 	/**
 	 *
 	 * @param Context $context        	

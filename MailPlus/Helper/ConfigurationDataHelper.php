@@ -38,11 +38,13 @@ class ConfigurationDataHelper extends AbstractHelper {
 	 * @var ApiFactory
 	 */
 	protected $_apiFactory;
-	
+
 	/**
 	 *
-	 * @param Context $context        	
-	 * @param ScopeConfigInterface $scopeConfig        	
+	 * @param Context $context
+	 * @param ScopeConfigInterface $scopeConfig
+	 * @param Collection $productCollection
+	 * @param ApiFactory $apiFactory
 	 */
 	public function __construct(Context $context, ScopeConfigInterface $scopeConfig,
 			Collection $productCollection,
@@ -53,8 +55,9 @@ class ConfigurationDataHelper extends AbstractHelper {
 		$this->_productCollection = $productCollection;
 		$this->_apiFactory = $apiFactory;
 	}
-	
+
 	/**
+	 * @param null $storeId
 	 * @return string
 	 */
 	public function getConsumerKey($storeId = null) {

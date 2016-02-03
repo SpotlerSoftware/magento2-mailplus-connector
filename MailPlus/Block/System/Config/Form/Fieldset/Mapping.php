@@ -31,8 +31,8 @@ class Mapping extends FieldSet {
 	 * @param Context $context
 	 * @param Session $authSession
 	 * @param Js $jsHelper
-	 * @param \Magento\Framework\Module\ModuleListInterface $moduleList
 	 * @param array $data
+	 * @internal param \Magento\Framework\Module\ModuleListInterface $moduleList
 	 */
 	public function __construct(Context $context,
                                 Session $authSession,
