@@ -10,9 +10,17 @@ get-composer:
 /var/www/html/index.html:
   file.absent
 
-
+set-composer-keys:
+  cmd.run:
+    - require:
+      - cmd: get-composer
+      - cmd: magento2-community-edition
+    - name: composer config http-basic.repo.magento.com 96fce2b01f0952d09208515bdccb1b77 bac7e70f3b3e5c783698de607f7c234b
+    - cwd: /var/www/html
+    
 magento2-community-edition:
   cmd.run:
+    - cwd: /var/www/html
     - name: |
         composer config -g http-basic.repo.magento.com 96fce2b01f0952d09208515bdccb1b77 bac7e70f3b3e5c783698de607f7c234b
         sudo composer -v create-project --prefer-dist -s dev --repository-url=http://nexus.spotler.com/satis/magento/ magento/project-community-edition /var/www/html/
@@ -46,7 +54,7 @@ magento-rights:
       - group
     - watch:
        - cmd: magento-install
-       - cmd: magento-static
+       - cmd: magento-upgrade
 
 magento-cli:
   cmd.run:
@@ -63,9 +71,25 @@ magento-install:
           - cmd: magento-cli
     - unless: test -f /var/www/html/var/cache
 
+magento-sample-data:
+  cmd.run:
+      - name: 'php bin/magento sampledata:deploy'
+      - cwd: /var/www/html
+      - unless: test -d /var/www/html/vendor/magento/module-bundle-sample-data
+      - require:
+        - cmd: magento-install
+
+magento-upgrade:
+  cmd.wait:
+    - name: php bin/magento setup:upgrade
+    - cwd: /var/www/html
+    - watch:
+      - cmd: magento-sample-data
+
 magento-static:
   cmd.run:
     - name: 'php /var/www/html/bin/magento setup:static-content:deploy'
     - user: www-data
     - require:
           - cmd: magento-install
+          - cmd: magento-sample-data
