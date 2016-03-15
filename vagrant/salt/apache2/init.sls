@@ -4,6 +4,12 @@ sudo a2enmod rewrite:
     - require:
       - pkg: apache2
 
+sudo a2enmod headers:
+  cmd.run:
+    - unless: test -f /etc/apache2/mods-enabled/headers.load
+    - require:
+      - pkg: apache2
+
 apache2:
   pkg.installed:
     - pkgs:
@@ -18,5 +24,6 @@ apache2:
             - pkg: apache2
             - file: apache2
             - cmd: sudo a2enmod rewrite
+            - cmd: sudo a2enmod headers
             - sls: php
 
