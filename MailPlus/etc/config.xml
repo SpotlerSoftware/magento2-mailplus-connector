@@ -2,15 +2,4 @@
  
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
-    <default>
-        <mailplus>
-            <images>
-                <image_format>1</image_format>
-                <image_width_large>185</image_width_large>
-                <image_height_large>185</image_height_large>
-                <image_width_small>145</image_width_small>
-                <image_height_small>145</image_height_small>
-            </images>
-        </mailplus>
-    </default>
 </config>
