@@ -13,7 +13,7 @@ mysql-setup:
 mysql-server:
   pkg.installed:
     - pkgs:
-      -  mysql-server-5.6: '5.6.27-0ubuntu0.14.04.1'
+      -  mysql-server-5.6
     - require:
       - debconf: mysql-setup
 
