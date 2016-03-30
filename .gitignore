@@ -5,7 +5,7 @@
 composer.lock
 
 # Intellij
-.idea/
+.idea
 *.iml
 *.iws
 
