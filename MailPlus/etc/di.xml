@@ -7,7 +7,8 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="MailPlus\MailPlus\Api\SubscribersInterface" type="MailPlus\MailPlus\Model\Subscribers" />        
+    <preference for="MailPlus\MailPlus\Api\SubscriberRepositoryInterface"
+                type="MailPlus\MailPlus\Model\SubscriberRepository"/>
     <preference for="MailPlus\MailPlus\Api\Data\SubscriberInterface" type="Magento\Newsletter\Model\Subscriber" />
 
     <preference for="MailPlus\MailPlus\Api\Data\SubscriberSearchResultsInterface"

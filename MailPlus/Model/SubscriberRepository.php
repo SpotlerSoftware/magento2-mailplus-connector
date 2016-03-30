@@ -1,16 +1,24 @@
 <?php
 namespace MailPlus\MailPlus\Model;
 
-class Subscribers implements \MailPlus\MailPlus\Api\SubscribersInterface {
+use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Api\SearchResultsFactory;
+use Magento\Newsletter\Model\QueueFactory;
+use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
+use MailPlus\MailPlus\Api\SubscriberRepositoryInterface;
+
+class SubscriberRepository implements SubscriberRepositoryInterface
+{
 	
 	protected $_subscriberCollectionFactory;
 	
 	protected $_searchResultsFactory;
 	protected  $_queueFactory;
-	
-	public function __construct(\Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory $subscriberCollectionFactory,
-			\Magento\Framework\Api\SearchResultsFactory $searchResultsFactory,
-			\Magento\Newsletter\Model\QueueFactory $queueFactory) {
+
+	public function __construct(CollectionFactory $subscriberCollectionFactory,
+								SearchResultsFactory $searchResultsFactory,
+								QueueFactory $queueFactory)
+	{
 		$this->_subscriberCollectionFactory = $subscriberCollectionFactory;	
 		$this->_searchResultsFactory = $searchResultsFactory;
 		$this->_queueFactory = $queueFactory;
@@ -19,8 +27,9 @@ class Subscribers implements \MailPlus\MailPlus\Api\SubscribersInterface {
 	/**
 	 * {@inheritdoc}
 	 */
-	
-	public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria) {
+
+	public function getList(SearchCriteriaInterface $searchCriteria)
+	{
 		$collection = $this->_subscriberCollectionFactory->create();
 		$collection
 			->addSubscriberTypeField()

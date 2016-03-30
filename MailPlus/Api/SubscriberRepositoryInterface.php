@@ -4,7 +4,8 @@ namespace MailPlus\MailPlus\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 
-interface SubscribersInterface {
+interface SubscriberRepositoryInterface
+{
 	
 	/**
 	 * Get subscriber list
