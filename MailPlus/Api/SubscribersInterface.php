@@ -2,12 +2,14 @@
 
 namespace MailPlus\MailPlus\Api;
 
+use Magento\Framework\Api\SearchCriteriaInterface;
+
 interface SubscribersInterface {
 	
 	/**
 	 * Get subscriber list
-	 * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
+	 * @param SearchCriteriaInterface $searchCriteria
 	 * @return \MailPlus\MailPlus\Api\Data\SubscriberSearchResultsInterface
 	 */
-	public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
+	public function getList(SearchCriteriaInterface $searchCriteria);
 }

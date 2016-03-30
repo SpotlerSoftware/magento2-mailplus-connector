@@ -3,6 +3,7 @@
 
 #composer
 composer.lock
+vendor
 
 # Intellij
 .idea

@@ -1,7 +1,10 @@
 <?php
 namespace MailPlus\MailPlus\Api\Data;
 
-interface SubscriberSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface {
+use Magento\Framework\Api\SearchResultsInterface;
+
+interface SubscriberSearchResultsInterface extends SearchResultsInterface
+{
 	
 	/**
 	 * @api
