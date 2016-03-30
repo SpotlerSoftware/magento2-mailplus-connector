@@ -4,7 +4,7 @@
     <route url="/V1/mailplus/subscribers" method="GET">
         <service class="MailPlus\MailPlus\Api\SubscribersInterface" method="getList"/>
         <resources>
-            <resource ref="anonymous"/>
+            <resource ref="MailPlus_MailPluss::subscriber"/>
         </resources>
     </route>
 
