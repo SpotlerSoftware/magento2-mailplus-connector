@@ -47,6 +47,7 @@ MailPlus is the most widely used professional email marketing application in the
 
 - Run composer install
 	*	This should install dependencies to ../vendor (Intellij should add these as library roots for code completions
+	* 	You might need to create a app/etc/vendor_path.php file
 - Run vagrant up
 - Uncomment the synced folders in the vagrant file and vagrant reload (you can move the vagrantfile to a separate change set so it's not committed in git)
 - Enable the plugin by running (in the vagrant box)
