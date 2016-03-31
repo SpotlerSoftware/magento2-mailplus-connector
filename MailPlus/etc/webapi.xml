@@ -9,7 +9,7 @@
         </resources>
     </route>
     <route url="/V1/mailplus/store/:storeId/products" method="GET">
-        <service class="MailPlus\MailPlus\Api\WebsiteProductRepositoryInterface" method="getList"/>
+        <service class="MailPlus\MailPlus\Api\WebsiteProductRepositoryInterface" method="getStoreProductList"/>
         <resources>
             <resource ref="Magento_Catalog::products"/>
         </resources>

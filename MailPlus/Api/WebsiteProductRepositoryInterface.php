@@ -18,7 +18,7 @@ interface WebsiteProductRepositoryInterface
      *
      * @param int $storeId The store ID.
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \MailPlus\MailPlus\Api\Data\WebsiteProductSearchResultInterface
+     * @return \Magento\Catalog\Api\Data\ProductSearchResultsInterface
      */
-    public function getList($storeId, SearchCriteriaInterface $searchCriteria);
+    public function getStoreProductList($storeId, SearchCriteriaInterface $searchCriteria);
 }
