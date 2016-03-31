@@ -9,6 +9,7 @@
 namespace MailPlus\MailPlus\Model;
 
 
+use Magento\Catalog\Api\Data\ProductSearchResultsInterfaceFactory;
 use Magento\Catalog\Api\ProductAttributeRepositoryInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
@@ -19,7 +20,6 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsFactory;
 use Magento\Framework\Api\SortOrder;
 use Magento\Store\Model\StoreRepository;
-use MailPlus\MailPlus\Api\Data\WebsiteProductSearchResultInterfaceFactory;
 use MailPlus\MailPlus\Api\WebsiteProductRepositoryInterface;
 
 class WebsiteProductRepository implements WebsiteProductRepositoryInterface
@@ -40,7 +40,7 @@ class WebsiteProductRepository implements WebsiteProductRepositoryInterface
                                 ProductAttributeRepositoryInterface $metadataService,
                                 SearchCriteriaBuilder $searchCriteriaBuilder,
                                 StoreRepository $storeRepository,
-                                WebsiteProductSearchResultInterfaceFactory $searchResultsFactory
+                                ProductSearchResultsInterfaceFactory $searchResultsFactory
     )
     {
         $this->_searchResultsFactory = $searchResultsFactory;

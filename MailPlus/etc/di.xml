@@ -16,9 +16,5 @@
 
     <preference for="MailPlus\MailPlus\Api\WebsiteProductRepositoryInterface"
                 type="MailPlus\MailPlus\Model\WebsiteProductRepository"/>
-    <preference for="MailPlus\MailPlus\Api\Data\WebsiteProductInterface" type="Magento\Catalog\Model\Product"/>
-
-    <preference for="MailPlus\MailPlus\Api\Data\WebsiteProductSearchResultInterface"
-                type="Magento\Framework\Api\SearchResults"/>
 
 </config>
