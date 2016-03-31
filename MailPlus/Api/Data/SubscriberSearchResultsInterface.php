@@ -11,10 +11,10 @@ interface SubscriberSearchResultsInterface extends SearchResultsInterface
 	 * @return \MailPlus\MailPlus\Api\Data\SubscriberInterface[]
 	 */
 	public function getItems();
-	
+
 	/**
 	 * @api
-	 * param \MailPlus\MailPlus\Api\Data\SubscriberInterface[]
+	 * @param $items \MailPlus\MailPlus\Api\Data\SubscriberInterface[]
 	 * @return $this
 	 */
 	public function setItems(array $items);

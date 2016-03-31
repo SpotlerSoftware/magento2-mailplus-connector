@@ -11,7 +11,7 @@ class SubscriberRepository implements SubscriberRepositoryInterface
 
     protected $_subscriberCollectionFactory;
     protected $_searchResultsFactory;
-
+    
     public function __construct(CollectionFactory $subscriberCollectionFactory,
                                 SearchResultsFactory $searchResultsFactory)
     {
@@ -25,6 +25,7 @@ class SubscriberRepository implements SubscriberRepositoryInterface
 
     public function getList(SearchCriteriaInterface $searchCriteria)
     {
+        /** @var \Magento\Newsletter\Model\ResourceModel\Subscriber\Collection $collection */
         $collection = $this->_subscriberCollectionFactory->create();
         $collection
             ->addSubscriberTypeField()
@@ -33,6 +34,8 @@ class SubscriberRepository implements SubscriberRepositoryInterface
             ->setCurPage($searchCriteria->getCurrentPage())
             ->load();
 
+
+        /** @var \Magento\Framework\Api\SearchResults $searchResult */
         $searchResult = $this->_searchResultsFactory->create();
         $searchResult->setSearchCriteria($searchCriteria);
         $searchResult->setItems($collection->getItems());

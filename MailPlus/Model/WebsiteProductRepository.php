@@ -91,6 +91,7 @@ class WebsiteProductRepository implements WebsiteProductRepositoryInterface
         $collection->setPageSize($searchCriteria->getPageSize());
         $collection->load();
 
+        /** @var \Magento\Framework\Api\SearchResults $searchResult */
         $searchResult = $this->searchResultsFactory->create();
         $searchResult->setSearchCriteria($searchCriteria);
         $searchResult->setItems($collection->getItems());
