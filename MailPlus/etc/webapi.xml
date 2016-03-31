@@ -1,10 +1,17 @@
 <?xml version="1.0"?>
-<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../app/code/Magento/Webapi/etc/webapi.xsd">
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
 
     <route url="/V1/mailplus/subscribers" method="GET">
-        <service class="MailPlus\MailPlus\Api\SubscribersInterface" method="getList"/>
+        <service class="MailPlus\MailPlus\Api\SubscriberRepositoryInterface" method="getList"/>
         <resources>
             <resource ref="MailPlus_MailPlus::subscriber"/>
+        </resources>
+    </route>
+    <route url="/V1/mailplus/store/:storeId/products" method="GET">
+        <service class="MailPlus\MailPlus\Api\WebsiteProductRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
         </resources>
     </route>
 
