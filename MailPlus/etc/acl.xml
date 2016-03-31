@@ -4,7 +4,7 @@
 	<acl>
 		<resources>
 			<resource id="Magento_Backend::admin">
-				<resource id="MailPlus_MailPluss::subscriber" title="Newsletter subscribers">
+				<resource id="MailPlus_MailPlus::subscriber" title="Newsletter subscribers">
 				</resource>
 			</resource>
 		</resources>
