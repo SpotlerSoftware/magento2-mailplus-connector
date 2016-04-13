@@ -4,7 +4,6 @@ namespace MailPlus\MailPlus\Model;
 use Magento\Framework\Api\Search\FilterGroup;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsFactory;
-use Magento\Framework\ObjectManagerInterface;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\Collection;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
 use Magento\Newsletter\Model\Subscriber;
@@ -15,19 +14,16 @@ class SubscriberRepository implements SubscriberRepositoryInterface
 
     protected $_subscriberCollectionFactory;
     protected $_searchResultsFactory;
-    /**
-     * @var ObjectManagerInterface
-     */
-    private $_objectManager;
+    private $_subscriberFactory;
 
 
     public function __construct(CollectionFactory $subscriberCollectionFactory,
                                 SearchResultsFactory $searchResultsFactory,
-                                ObjectManagerInterface $objectManager)
+                                \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory)
     {
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
         $this->_searchResultsFactory = $searchResultsFactory;
-        $this->_objectManager = $objectManager;
+        $this->_subscriberFactory = $subscriberFactory;
     }
 
     /**
@@ -95,14 +91,13 @@ class SubscriberRepository implements SubscriberRepositoryInterface
             /**
              * @var \Magento\Newsletter\Model\Subscriber
              */
-            $loadedSubscriber = $this->_objectManager->create(
-                'Magento\Newsletter\Model\Subscriber'
-            )->load(
+            $loadedSubscriber = $this->_subscriberFactory->create()->load(
                 $subscriber->getId()
             );
 
             $loadedSubscriber->setStatus($subscriber->getStatus());
             $loadedSubscriber->save();
+            return $loadedSubscriber;
         }
     }
 }
