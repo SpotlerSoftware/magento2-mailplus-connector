@@ -8,6 +8,12 @@
             <resource ref="MailPlus_MailPlus::subscriber"/>
         </resources>
     </route>
+    <route url="/V1/mailplus/subscribers/:id" method="PUT">
+        <service class="MailPlus\MailPlus\Api\SubscriberRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="MailPlus_MailPlus::subscriber"/>
+        </resources>
+    </route>
     <route url="/V1/mailplus/store/:storeId/products" method="GET">
         <service class="MailPlus\MailPlus\Api\WebsiteProductRepositoryInterface" method="getStoreProductList"/>
         <resources>

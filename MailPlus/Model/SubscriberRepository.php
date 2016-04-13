@@ -4,8 +4,10 @@ namespace MailPlus\MailPlus\Model;
 use Magento\Framework\Api\Search\FilterGroup;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsFactory;
+use Magento\Framework\ObjectManagerInterface;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\Collection;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
+use Magento\Newsletter\Model\Subscriber;
 use MailPlus\MailPlus\Api\SubscriberRepositoryInterface;
 
 class SubscriberRepository implements SubscriberRepositoryInterface
@@ -13,12 +15,19 @@ class SubscriberRepository implements SubscriberRepositoryInterface
 
     protected $_subscriberCollectionFactory;
     protected $_searchResultsFactory;
-    
+    /**
+     * @var ObjectManagerInterface
+     */
+    private $_objectManager;
+
+
     public function __construct(CollectionFactory $subscriberCollectionFactory,
-                                SearchResultsFactory $searchResultsFactory)
+                                SearchResultsFactory $searchResultsFactory,
+                                ObjectManagerInterface $objectManager)
     {
         $this->_subscriberCollectionFactory = $subscriberCollectionFactory;
         $this->_searchResultsFactory = $searchResultsFactory;
+        $this->_objectManager = $objectManager;
     }
 
     /**
@@ -75,4 +84,25 @@ class SubscriberRepository implements SubscriberRepositoryInterface
         }
     }
 
+    /**
+     * Save a subscriber
+     * @param \Magento\Newsletter\Model\Subscriber $subscriber
+     * @return \MailPlus\MailPlus\Api\Data\SubscriberInterface
+     */
+    public function save(Subscriber $subscriber)
+    {
+        if ($subscriber->getId()) {
+            /**
+             * @var \Magento\Newsletter\Model\Subscriber
+             */
+            $loadedSubscriber = $this->_objectManager->create(
+                'Magento\Newsletter\Model\Subscriber'
+            )->load(
+                $subscriber->getId()
+            );
+
+            $loadedSubscriber->setStatus($subscriber->getStatus());
+            $loadedSubscriber->save();
+        }
+    }
 }
