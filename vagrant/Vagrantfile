@@ -16,7 +16,6 @@ Vagrant.configure(2) do |config|
 
 	config.vm.synced_folder "salt/", "/srv/salt/"
 
-	# Uncomment this synced folder after Magento is installed to enable php deployment
-	# config.vm.synced_folder "../MailPlus","/var/www/html/app/code/MailPlus/MailPlus"
-
+	# Uncomment these synced folders after Magento is installed to enable php deployment
+	# config.vm.synced_folder "../","/var/www/html/app/code/MailPlus/MailPlus"
 end
