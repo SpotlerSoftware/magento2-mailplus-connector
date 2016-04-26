@@ -33,7 +33,7 @@
 	"magento": {
 	  "type": "composer",
 	  "url": "https://repo.magento.com/"
-    }
+	}
   },
   "config": {
 	"vendor-dir": "../vendor"

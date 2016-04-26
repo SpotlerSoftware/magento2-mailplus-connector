@@ -65,14 +65,15 @@ class SubscriberRepository implements SubscriberRepositoryInterface
     protected function addFilterGroupToCollection(
         FilterGroup $filterGroup,
         Collection $collection
-    ) {
+    )
+    {
         $fields = [];
         $conditions = [];
         foreach ($filterGroup->getFilters() as $filter) {
             $fields[] = $filter->getField();
             $conditionType = $filter->getConditionType() ? $filter->getConditionType() : 'eq';
             $conditionValue = $conditionType != 'in' && $conditionType != 'nin' ? $filter->getValue() : explode(',', $filter->getValue());
-            $conditions[] = [ $conditionType => $conditionValue ];
+            $conditions[] = [$conditionType => $conditionValue];
         }
 
         if ($fields) {
