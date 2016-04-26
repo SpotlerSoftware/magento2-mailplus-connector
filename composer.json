@@ -37,5 +37,10 @@
   },
   "config": {
 	"vendor-dir": "../vendor"
+  },
+  "archive": {
+	"exclude": [
+	  "/vagrant"
+	]
   }
 }
