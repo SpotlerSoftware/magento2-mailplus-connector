@@ -21,14 +21,6 @@
 	  "MailPlus\\MailPlus\\": ""
 	}
   },
-  "extra": {
-	"map": [
-	  [
-		"*",
-		"MailPlus/MailPlus"
-	  ]
-	]
-  },
   "repositories": {
 	"magento": {
 	  "type": "composer",
