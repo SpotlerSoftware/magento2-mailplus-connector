@@ -5,13 +5,13 @@
 	<route url="/V1/mailplus/subscribers" method="GET">
 		<service class="MailPlus\MailPlus\Api\SubscriberRepositoryInterface" method="getList"/>
 		<resources>
-			<resource ref="MailPlus_MailPlus::subscriber"/>
+			<resource ref="Magento_Newsletter::subscriber"/>
 		</resources>
 	</route>
 	<route url="/V1/mailplus/subscribers/:id" method="PUT">
 		<service class="MailPlus\MailPlus\Api\SubscriberRepositoryInterface" method="save"/>
 		<resources>
-			<resource ref="MailPlus_MailPlus::subscriber"/>
+			<resource ref="Magento_Newsletter::subscriber"/>
 		</resources>
 	</route>
 	<route url="/V1/mailplus/store/:storeId/products" method="GET">

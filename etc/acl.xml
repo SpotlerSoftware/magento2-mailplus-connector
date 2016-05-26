@@ -2,11 +2,5 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
 	<acl>
-		<resources>
-			<resource id="Magento_Backend::admin">
-				<resource id="MailPlus_MailPlus::subscriber" title="Newsletter subscribers">
-				</resource>
-			</resource>
-		</resources>
 	</acl>
 </config>
