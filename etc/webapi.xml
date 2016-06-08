@@ -14,11 +14,4 @@
 			<resource ref="Magento_Newsletter::subscriber"/>
 		</resources>
 	</route>
-	<route url="/V1/mailplus/store/:storeId/products" method="GET">
-		<service class="MailPlus\MailPlus\Api\WebsiteProductRepositoryInterface" method="getStoreProductList"/>
-		<resources>
-			<resource ref="Magento_Catalog::products"/>
-		</resources>
-	</route>
-
 </routes>
