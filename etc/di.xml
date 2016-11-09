@@ -10,7 +10,7 @@
 
 	<preference for="MailPlus\MailPlus\Api\SubscriberRepositoryInterface"
 				type="MailPlus\MailPlus\Model\SubscriberRepository"/>
-	<preference for="MailPlus\MailPlus\Api\Data\SubscriberInterface" type="Magento\Newsletter\Model\Subscriber"/>
+	<preference for="MailPlus\MailPlus\Api\Data\SubscriberInterface" type="\Magento\Newsletter\Model\Subscriber"/>
 
 	<preference for="MailPlus\MailPlus\Api\Data\SubscriberSearchResultsInterface"
 				type="Magento\Framework\Api\SearchResults"/>

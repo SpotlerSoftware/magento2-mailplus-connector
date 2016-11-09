@@ -83,10 +83,10 @@ class SubscriberRepository implements SubscriberRepositoryInterface
 
     /**
      * Save a subscriber
-     * @param \Magento\Newsletter\Model\Subscriber $subscriber
+     * @param \MailPlus\MailPlus\Api\Data\SubscriberInterface $subscriber
      * @return \MailPlus\MailPlus\Api\Data\SubscriberInterface
      */
-    public function save(Subscriber $subscriber)
+    public function save(\MailPlus\MailPlus\Api\Data\SubscriberInterface $subscriber)
     {
         if ($subscriber->getId()) {
             /**

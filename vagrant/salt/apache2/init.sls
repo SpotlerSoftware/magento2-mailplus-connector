@@ -14,6 +14,7 @@ apache2:
   pkg.installed:
     - pkgs:
       - apache2
+      - libapache2-mod-php
   file.managed:
     - name: /etc/apache2/apache2.conf
     - source:
