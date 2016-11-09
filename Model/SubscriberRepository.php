@@ -6,7 +6,6 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsFactory;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\Collection;
 use Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory;
-use Magento\Newsletter\Model\Subscriber;
 use MailPlus\MailPlus\Api\SubscriberRepositoryInterface;
 
 class SubscriberRepository implements SubscriberRepositoryInterface

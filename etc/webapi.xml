@@ -11,7 +11,7 @@
 	<route url="/V1/mailplus/subscribers/:id" method="PUT">
 		<service class="MailPlus\MailPlus\Api\SubscriberRepositoryInterface" method="save"/>
 		<resources>
-			<resource ref="Magento_Newsletter::subscriber"/>
+			<resource ref="MailPlus_MailPlus::subscriber"/>
 		</resources>
 	</route>
 </routes>
