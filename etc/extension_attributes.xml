@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <!-- Not functional until this issue is resolved: https://github.com/magento/magento2/issues/8035 -->
     <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
         <attribute code="mailplus_id" type="string">
             <join reference_table="mp_quote_conversion" join_on_field="quote_id" reference_field="quote_id">
