@@ -34,7 +34,7 @@
   },
   "archive": {
     "exclude": [
-      "/vagrant"
+      "/vagrant", "auth.json", "*.tar"
     ]
   }
 }
