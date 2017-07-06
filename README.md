@@ -62,7 +62,7 @@ MailPlus is the most widely used professional email marketing application in the
 
 - cd <magento-folder>
 
-- composer config repositories.mailplus composer https://nexus.spotler.com/satis/magento/
+- composer config repositories.mailplus vcs https://github.com/SpotlerNL/magento2-mailplus-connector
 
 - composer require mailplus/mailplus-connector
 
