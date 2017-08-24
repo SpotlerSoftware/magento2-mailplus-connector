@@ -7,15 +7,18 @@ Please contact MailPlus to setup your account.
 
 ## Installation using composer
 
-- cd <magento-folder>
+- cd \<magento-folder\>
 
 - composer config repositories.mailplus vcs https://github.com/SpotlerSoftware/magento2-mailplus-connector
 
 - composer require mailplus/mailplus-connector
 
-- composer update
+- bin/magento module:enable MailPlus_MailPlus
 
 - php bin/magento setup:upgrade
+
+- php bin/magento setup:di:compile
+
 
 
 ## Connects automatically with your webshop
