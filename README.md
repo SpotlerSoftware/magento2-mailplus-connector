@@ -5,11 +5,21 @@ Connect your webshop to your MailPlus account.
 NOTE: A MailPlus eCom account is required to utilize the following features. 
 Please contact MailPlus to setup your account.
 
-## About
+## Installation using composer
 
-MailPlus is a fast growing email marketing service provider in Zoetermeer, the Netherlands. With a young team of 25 employees, we work hard on the development and delivery of our email marketing platform.
+- cd \<magento-folder\>
 
-MailPlus is the most widely used professional email marketing application in the Netherlands for the middle and upper market of medium sized enterprises. The product is of Dutch origin and is being developed by a team of 7 people.
+- composer config repositories.mailplus vcs https://github.com/SpotlerSoftware/magento2-mailplus-connector
+
+- composer require mailplus/mailplus-connector
+
+- bin/magento module:enable MailPlus_MailPlus
+
+- php bin/magento setup:upgrade
+
+- php bin/magento setup:di:compile
+
+
 
 ## Connects automatically with your webshop
 
@@ -57,15 +67,3 @@ MailPlus is the most widely used professional email marketing application in the
 	magento setup:upgrade
 	
 	magento setup:di:compile
-
-## Installation using composer
-
-- cd <magento-folder>
-
-- composer config repositories.mailplus vcs https://github.com/SpotlerNL/magento2-mailplus-connector
-
-- composer require mailplus/mailplus-connector
-
-- composer update
-
-- php bin/magento setup:upgrade
