@@ -1,0 +1,24 @@
+.buildpath
+/.project
+
+#composer
+composer.lock
+vendor
+auth.json
+
+# Intellij
+.idea
+*.iml
+*.iws
+
+#vagrant
+.vagrant
+
+#Salt
+minion.dpkg-dist
+minion_id
+minion
+proxy
+/vagrant/ubuntu-xenial-16.04-cloudimg-console.log
+
+*.tar

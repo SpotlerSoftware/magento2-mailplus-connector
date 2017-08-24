@@ -1,0 +1,21 @@
+Vagrant.configure(2) do |config|
+	config.vm.box = "ubuntu/xenial64"
+	config.vm.network "forwarded_port", guest: 80, host: 9080
+	config.vm.network "forwarded_port", guest: 9000, host: 9001
+	config.vm.provider "virtualbox" do |vb|
+		vb.memory = "2048"
+	end
+
+
+	# Salt provisioning
+	config.vm.provision "shell",
+		path: "https://bootstrap.saltstack.com"
+
+	config.vm.provision "shell",
+		inline: "sudo salt-call --local state.highstate"
+
+	config.vm.synced_folder "salt/", "/srv/salt/"
+
+	# Uncomment these synced folders after Magento is installed to enable php deployment
+	config.vm.synced_folder "../","/var/www/html/app/code/MailPlus/MailPlus"
+end

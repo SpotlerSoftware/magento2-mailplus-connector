@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+	<route url="/V1/mailplus/subscribers" method="GET">
+		<service class="MailPlus\MailPlus\Api\SubscriberRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Magento_Newsletter::subscriber"/>
+		</resources>
+	</route>
+	<route url="/V1/mailplus/subscribers/:id" method="PUT">
+		<service class="MailPlus\MailPlus\Api\SubscriberRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="MailPlus_MailPlus::subscriber"/>
+		</resources>
+	</route>
+	<route url="/V1/mailplus/orders" method="GET">
+		<service class="MailPlus\MailPlus\Api\ExtendedOrderRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Magento_Sales::order"/>
+		</resources>
+	</route>
+</routes>
