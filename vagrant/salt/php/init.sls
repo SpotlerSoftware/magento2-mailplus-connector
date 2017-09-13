@@ -13,10 +13,10 @@ php:
         - php-mbstring
         - php-zip
 # Uncomment to enable xdebug. Not recommended when using Composer to install magento
-#        - php7-xdebug
+#        - php-xdebug
 
 # Uncomment to enable xdebug. Not recommended when using Composer to install magento
-#/etc/php5/apache2/conf.d/20-xdebug.ini:
+#/etc/php/7.0/apache2/conf.d/20-xdebug.ini:
 #  file.managed:
 #    - source: salt://php/xdebug.ini
 
