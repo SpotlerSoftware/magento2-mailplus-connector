@@ -21,4 +21,9 @@
     <type name="Magento\Catalog\Api\ProductRepositoryInterface">
         <plugin name="Final price for product" type="MailPlus\MailPlus\Plugin\ProductRepositoryPlugin" sortOrder="1"/>
     </type>
+
+    <type name="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface">
+        <plugin name="Change date for Catalog Rule" type="MailPlus\MailPlus\Plugin\CatalogRuleRepositoryPlugin"
+                sortOrder="1"/>
+    </type>
 </config>

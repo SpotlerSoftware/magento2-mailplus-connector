@@ -20,4 +20,8 @@
         </attribute>
     </extension_attributes>
 
+    <extension_attributes for="Magento\CatalogRule\Api\Data\RuleInterface">
+        <attribute code="updated_at" type="string">
+        </attribute>
+    </extension_attributes>
 </config>

@@ -49,8 +49,41 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'quote',
                     'entity_id');
             $setup->getConnection()->createTable($quoteConversionTable);
-
-
+        }
+        if (version_compare($context->getVersion(), '1.2.0') < 0) {
+            $catalogRuleUpdatedAtTable = $setup->getConnection()
+                ->newTable('mp_catalog_rule_updated_at')
+                ->addColumn(
+                    'catalog_rule_id',
+                    Table::TYPE_INTEGER,
+                    10,
+                    [
+                        'unsigned' => true,
+                        'nullable' => false,
+                        'primary' => true
+                    ],
+                    'Rule ID'
+                )
+                ->addColumn(
+                    'updated_at',
+                    Table::TYPE_TIMESTAMP,
+                    null,
+                    [
+                        'nullable' => false,
+                        'primary' => false,
+                        'default' => Table::TIMESTAMP_INIT_UPDATE
+                    ],
+                    'Rule updated at'
+                )
+                ->addIndex(
+                    $setup->getIdxName('mp_catalog_rule_updated_at', ['catalog_rule_id']),
+                    ['catalog_rule_id']
+                )
+                ->addForeignKey('catalogrule',
+                    'catalog_rule_id',
+                    'catalogrule',
+                    'rule_id');
+            $setup->getConnection()->createTable($catalogRuleUpdatedAtTable);
         }
         $setup->endSetup();
     }
