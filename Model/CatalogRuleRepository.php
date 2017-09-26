@@ -47,17 +47,16 @@ class CatalogRuleRepository implements CatalogRuleRepositoryInterface
         // Filter out updated_at filters
         $updatedAtFilter = null;
         $filterGroups = $searchCriteria->getFilterGroups();
-        foreach ($filterGroups as $filterGroupIndex => $filterGroup) {
+        foreach ($filterGroups as $filterGroup) {
             $filters = $filterGroup->getFilters();
             foreach ($filters as $filterIndex => $filter) {
                 if ($filter->getField() == 'updated_at') {
                     unset($filters[$filterIndex]);
                     $updatedAtFilter = $filter;
-                    $filterGroup->setFilters($filters);
+                    $filterGroup->setFilters(array_values($filters));
                 }
             }
         }
-
 
         /** @var Collection $collection */
         $collection = $this->_catalogRuleCollectionFactory->create();
@@ -105,8 +104,6 @@ class CatalogRuleRepository implements CatalogRuleRepositoryInterface
                     unset($items[$itemIndex]);
                 }
             }
-
-
         }
 
 
