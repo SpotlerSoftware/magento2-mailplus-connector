@@ -100,7 +100,9 @@ class CatalogRuleRepository implements CatalogRuleRepositoryInterface
                 if ($updatedAtFilter->getConditionType() != 'gt') {
                     throw new \UnexpectedValueException('Only condition type "gt" supported for updated_at');
                 }
-                if (strtotime($dateTime) < strtotime($updatedAtFilter->getValue())) {
+
+                $filterDateTime = DateTime::createFromFormat('Y-m-d\+H:i:s', $updatedAtFilter->getValue());
+                if (strtotime($dateTime) < $filterDateTime->getTimestamp()) {
                     unset($items[$itemIndex]);
                 }
             }
