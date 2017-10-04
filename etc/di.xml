@@ -14,4 +14,16 @@
 				type="Magento\Framework\Api\SearchResults"/>
 	<preference for="MailPlus\MailPlus\Api\ExtendedOrderRepositoryInterface"
 				type="MailPlus\MailPlus\Model\ExtendedOrderRepository"/>
+
+    <preference for="MailPlus\MailPlus\Api\CatalogRuleRepositoryInterface"
+                type="MailPlus\MailPlus\Model\CatalogRuleRepository"/>
+
+    <type name="Magento\Catalog\Api\ProductRepositoryInterface">
+        <plugin name="Final price for product" type="MailPlus\MailPlus\Plugin\ProductRepositoryPlugin" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface">
+        <plugin name="Change date for Catalog Rule" type="MailPlus\MailPlus\Plugin\CatalogRuleRepositoryPlugin"
+                sortOrder="1"/>
+    </type>
 </config>

@@ -20,4 +20,10 @@
 			<resource ref="Magento_Sales::order"/>
 		</resources>
 	</route>
+	<route url="/V1/mailplus/catalog-rule" method="GET">
+		<service class="MailPlus\MailPlus\Api\CatalogRuleRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Magento_CatalogRule::promo_catalog"/>
+		</resources>
+	</route>
 </routes>
