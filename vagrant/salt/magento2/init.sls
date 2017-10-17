@@ -23,7 +23,7 @@ magento2-community-edition:
     - cwd: /var/www/html
     - name: |
         composer config -g http-basic.repo.magento.com 96fce2b01f0952d09208515bdccb1b77 bac7e70f3b3e5c783698de607f7c234b
-        sudo composer -v create-project --prefer-dist -s dev --repository-url=https://nexus.mailplus.nl/satis/magento/ magento/project-community-edition /var/www/html/ 2.1.*
+        sudo composer -v create-project --prefer-dist -s dev --repository-url=https://nexus.mailplus.nl/satis/magento/ magento/project-community-edition /var/www/html/ 2.2.*
     - require:
       - cmd: get-composer
       - pkg: git
