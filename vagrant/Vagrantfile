@@ -18,4 +18,6 @@ Vagrant.configure(2) do |config|
 
 	# Uncomment these synced folders after Magento is installed to enable php deployment
 	# config.vm.synced_folder "../","/var/www/html/app/code/MailPlus/MailPlus"
+
+	config.vm.synced_folder "../", "/opt/mailplus"
 end
