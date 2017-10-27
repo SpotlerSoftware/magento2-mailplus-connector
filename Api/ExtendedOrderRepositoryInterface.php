@@ -7,15 +7,15 @@ namespace MailPlus\MailPlus\Api;
 
 //This class is needed because magento doesn't load joined extension attributes for orders.
 
-use Magento\Framework\Api\SearchCriteria;
+use Magento\Framework\Api\SearchCriteriaInterface;
 
 interface ExtendedOrderRepositoryInterface
 {
 
     /**
      * Get subscriber list
-     * @param SearchCriteria $searchCriteria
+     * @param SearchCriteriaInterface $searchCriteria
      * @return \Magento\Sales\Api\Data\OrderSearchResultInterface
      */
-    public function getList(SearchCriteria $searchCriteria);
+    public function getList(SearchCriteriaInterface $searchCriteria);
 }
