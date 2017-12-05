@@ -20,4 +20,6 @@ Vagrant.configure(2) do |config|
 	# config.vm.synced_folder "../","/var/www/html/app/code/MailPlus/MailPlus"
 
 	config.vm.synced_folder "../", "/opt/mailplus"
+
+	config.vm.synced_folder "share", "/srv/share"
 end
