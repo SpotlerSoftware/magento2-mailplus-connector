@@ -65,7 +65,8 @@ magento-cli:
 
 magento-install:
   cmd.run:
-    - name: 'php /var/www/html/bin/magento setup:install --use-rewrites=1 --backend-frontname=admin --base-url=http://magento.dev:9080/ --admin-firstname=dev --admin-lastname=dev --admin-email=test@mailplus.com --admin-user=admin --admin-password=Admin1234 --db-password=root'
+    - name: 'php /var/www/html/bin/magento setup:install --use-rewrites=1 --backend-frontname=admin --base-url=http://magento.local:9080/ --admin-firstname=dev --admin-lastname=dev --admin-email=test@mailplus.com
+    --admin-user=admin --admin-password=Admin1234 --db-password=root'
     - user: www-data
     - require:
           - cmd: magento-cli
