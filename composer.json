@@ -2,7 +2,7 @@
   "name": "mailplus/mailplus-connector",
   "description": "The MailPlus connector for magento 2",
   "type": "magento2-module",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "license": [
     "OSL-3.0"
   ],
