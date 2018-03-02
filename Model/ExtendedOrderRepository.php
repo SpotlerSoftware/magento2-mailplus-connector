@@ -2,6 +2,7 @@
 
 namespace MailPlus\MailPlus\Model;
 
+use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Sales\Api\Data\OrderSearchResultInterfaceFactory as SearchResultFactory;
 use Magento\Sales\Model\OrderRepository;
 use Magento\Sales\Model\ResourceModel\Metadata;
@@ -16,6 +17,11 @@ class ExtendedOrderRepository extends OrderRepository implements ExtendedOrderRe
     {
         //inject the ExtendedOrderSearchResultInterfaceFactory
         parent::__construct($metadata, $searchResultFactory);
+    }
+
+    public function getList(SearchCriteriaInterface $searchCriteria)
+    {
+        // TODO: Implement getList() method.
     }
 
 }
