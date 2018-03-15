@@ -85,7 +85,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'rule_id');
             $setup->getConnection()->createTable($catalogRuleUpdatedAtTable);
         }
-        if (version_compare($context->getVersion(), '1.4.1') < 0) {
+        if (version_compare($context->getVersion(), '1.3.1') < 0) {
             $setup->getConnection()
                 ->dropForeignKey('mp_quote_conversion', 'conversion_quote')
                 ->addForeignKey('conversion_quote',
