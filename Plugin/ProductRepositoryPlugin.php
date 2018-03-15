@@ -20,6 +20,8 @@ class ProductRepositoryPlugin
             $finalPrice = $item->getFinalPrice();
             $extensionAttributes = $item->getExtensionAttributes();
             $extensionAttributes->setFinalPrice($finalPrice);
+            $regularPrice = $item->getPriceInfo()->getPrice('regular_price')->getValue();
+            $extensionAttributes->setRegularPrice($regularPrice);
             $item->setExtensionAttributes($extensionAttributes);
         }
         return $result;
