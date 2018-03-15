@@ -18,6 +18,8 @@
     <extension_attributes for="Magento\Catalog\Api\Data\ProductInterface">
         <attribute code="final_price" type="float">
         </attribute>
+        <attribute code="regular_price" type="float">
+        </attribute>
     </extension_attributes>
 
     <extension_attributes for="Magento\CatalogRule\Api\Data\RuleInterface">
