@@ -29,11 +29,13 @@ class CartRepositoryPlugin
         foreach ($result->getItems() as $cart) {
             $items = $cart->getItems();
 
-            /** @var Item $item */
-            foreach ($items as $item) {
-                $extensionAttributes = $this->getExtensionAttributes($item);
-                $extensionAttributes->setProductId($item->getProduct()->getId());
-                $item->setExtensionAttributes($extensionAttributes);
+            if ($items) {
+                /** @var Item $item */
+                foreach ($items as $item) {
+                    $extensionAttributes = $this->getExtensionAttributes($item);
+                    $extensionAttributes->setProductId($item->getProduct()->getId());
+                    $item->setExtensionAttributes($extensionAttributes);
+                }
             }
         }
         return $result;
