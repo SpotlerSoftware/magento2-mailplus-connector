@@ -32,7 +32,7 @@ class CartRepositoryPlugin
             if ($items) {
                 /** @var Item $item */
                 foreach ($items as $item) {
-                    $extensionAttributes = $this->getExtensionAttributes($item);
+                    $extensionAttributes = $this->getCartItemExtensionAttributes($item);
                     $extensionAttributes->setProductId($item->getProduct()->getId());
                     $item->setExtensionAttributes($extensionAttributes);
                 }
@@ -45,7 +45,7 @@ class CartRepositoryPlugin
      * @param Item $item
      * @return \Magento\Quote\Api\Data\CartItemExtension
      */
-    public function getExtensionAttributes(Item $item)
+    private function getCartItemExtensionAttributes(Item $item)
     {
         $extensionAttributes = $item->getExtensionAttributes();
         if (!$extensionAttributes) {
