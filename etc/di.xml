@@ -18,13 +18,13 @@
 
     <preference for="MailPlus\MailPlus\Api\CatalogRuleRepositoryInterface"
                 type="MailPlus\MailPlus\Model\CatalogRuleRepository"/>
-    <preference for="MailPlus\MailPlus\Api\ProductImageServiceInterface"
-                type="MailPlus\MailPlus\Model\ProductImageService"/>
+    <preference for="MailPlus\MailPlus\Service\ProductImageServiceInterface"
+                type="MailPlus\MailPlus\Service\ProductImageService"/>
 
     <preference for="MailPlus\MailPlus\Api\Data\HealthCheckInterface"
                 type="MailPlus\MailPlus\Model\HealthCheck"/>
-    <preference for="MailPlus\MailPlus\Api\HealthCheckServiceInterface"
-                type="MailPlus\MailPlus\Model\HealthCheckService"/>
+    <preference for="MailPlus\MailPlus\Service\HealthCheckServiceInterface"
+                type="MailPlus\MailPlus\Service\HealthCheckService"/>
 
     <type name="Magento\Catalog\Api\ProductRepositoryInterface">
         <plugin name="Final price for product" type="MailPlus\MailPlus\Plugin\ProductRepositoryPlugin" sortOrder="1"/>

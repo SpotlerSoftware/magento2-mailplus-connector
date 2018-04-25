@@ -1,6 +1,6 @@
 <?php
 
-namespace MailPlus\MailPlus\Api;
+namespace MailPlus\MailPlus\Service;
 
 use Magento\Framework\Controller\ResultInterface;
 
