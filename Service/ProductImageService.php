@@ -1,11 +1,10 @@
 <?php
 
-namespace MailPlus\MailPlus\Model;
+namespace MailPlus\MailPlus\Service;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product\Type\AbstractType;
 use Magento\Framework\Exception\NoSuchEntityException;
-use MailPlus\MailPlus\Api\ProductImageServiceInterface;
 
 class ProductImageService implements ProductImageServiceInterface
 {
