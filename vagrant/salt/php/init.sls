@@ -5,7 +5,7 @@ php:
         - php-mysql
         - php-mcrypt
         - php-curl
-        - php-xsl
+        - php-xml
         - php-intl
         - php-gd
         - php-cli
