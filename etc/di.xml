@@ -6,17 +6,25 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<preference for="MailPlus\MailPlus\Api\SubscriberRepositoryInterface"
-				type="MailPlus\MailPlus\Model\SubscriberRepository"/>
-	<preference for="MailPlus\MailPlus\Api\Data\SubscriberInterface" type="MailPlus\MailPlus\Model\Subscriber"/>
-	<preference for="MailPlus\MailPlus\Api\Data\SubscriberSearchResultsInterface"
-				type="Magento\Framework\Api\SearchResults"/>
-	<preference for="MailPlus\MailPlus\Api\ExtendedOrderRepositoryInterface"
-				type="MailPlus\MailPlus\Model\ExtendedOrderRepository"/>
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MailPlus\MailPlus\Api\SubscriberRepositoryInterface"
+                type="MailPlus\MailPlus\Model\SubscriberRepository"/>
+    <preference for="MailPlus\MailPlus\Api\Data\SubscriberInterface"
+                type="MailPlus\MailPlus\Model\Subscriber"/>
+    <preference for="MailPlus\MailPlus\Api\Data\SubscriberSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <preference for="MailPlus\MailPlus\Api\ExtendedOrderRepositoryInterface"
+                type="MailPlus\MailPlus\Model\ExtendedOrderRepository"/>
 
     <preference for="MailPlus\MailPlus\Api\CatalogRuleRepositoryInterface"
                 type="MailPlus\MailPlus\Model\CatalogRuleRepository"/>
+    <preference for="MailPlus\MailPlus\Service\ProductImageServiceInterface"
+                type="MailPlus\MailPlus\Service\ProductImageService"/>
+
+    <preference for="MailPlus\MailPlus\Api\Data\HealthCheckInterface"
+                type="MailPlus\MailPlus\Model\HealthCheck"/>
+    <preference for="MailPlus\MailPlus\Service\HealthCheckServiceInterface"
+                type="MailPlus\MailPlus\Service\HealthCheckService"/>
 
     <type name="Magento\Catalog\Api\ProductRepositoryInterface">
         <plugin name="Final price for product" type="MailPlus\MailPlus\Plugin\ProductRepositoryPlugin" sortOrder="1"/>
@@ -24,6 +32,11 @@
 
     <type name="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface">
         <plugin name="Change date for Catalog Rule" type="MailPlus\MailPlus\Plugin\CatalogRuleRepositoryPlugin"
+                sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Quote\Api\CartRepositoryInterface">
+        <plugin name="Product id for cart items" type="MailPlus\MailPlus\Plugin\CartRepositoryPlugin"
                 sortOrder="1"/>
     </type>
 </config>
