@@ -21,8 +21,17 @@
 		</resources>
 	</route>
 	<route url="/V1/mailplus/product-image/:storeId/:productId" method="GET">
-		<service class="MailPlus\MailPlus\Api\ProductImageServiceInterface" method="get"/>
+        <service class="MailPlus\MailPlus\Service\ProductImageServiceInterface" method="get"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
 	</route>
+    <route url="/V1/mailplus/healthcheck" method="GET">
+        <service class="MailPlus\MailPlus\Service\HealthCheckServiceInterface" method="get"/>
+        <resources>
+            <resource ref="MailPlus_MailPlus::healthcheck"/>
+        </resources>
+    </route>
 	<route url="/V1/mailplus/catalog-rule" method="GET">
 		<service class="MailPlus\MailPlus\Api\CatalogRuleRepositoryInterface" method="getList"/>
 		<resources>

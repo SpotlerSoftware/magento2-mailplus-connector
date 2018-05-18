@@ -15,6 +15,12 @@
             </join>
         </attribute>
     </extension_attributes>
+
+    <extension_attributes for="Magento\Quote\Api\Data\CartItemInterface">
+        <attribute code="product_id" type="string">
+        </attribute>
+    </extension_attributes>
+
     <extension_attributes for="Magento\Catalog\Api\Data\ProductInterface">
         <attribute code="final_price" type="float">
         </attribute>
