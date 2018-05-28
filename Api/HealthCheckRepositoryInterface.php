@@ -1,8 +1,8 @@
 <?php
 
-namespace MailPlus\MailPlus\Service;
+namespace MailPlus\MailPlus\Api;
 
-interface HealthCheckServiceInterface
+interface HealthCheckRepositoryInterface
 {
     /**
      * @return \MailPlus\MailPlus\Api\Data\HealthCheckInterface
