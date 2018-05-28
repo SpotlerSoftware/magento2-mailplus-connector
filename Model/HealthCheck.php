@@ -8,7 +8,7 @@ class HealthCheck implements \MailPlus\MailPlus\Api\Data\HealthCheckInterface
     private $magento2Version;
     /** @var string $pluginVersion */
     private $pluginVersion;
-    /** @var array $features */
+    /** @var string[] $features */
     private $features;
 
     /**
@@ -48,7 +48,7 @@ class HealthCheck implements \MailPlus\MailPlus\Api\Data\HealthCheckInterface
     }
 
     /**
-     * @param array $features
+     * @param string[] $features
      * @return $this
      */
     public function setFeatures(array $features)
@@ -58,7 +58,7 @@ class HealthCheck implements \MailPlus\MailPlus\Api\Data\HealthCheckInterface
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getFeatures()
     {
