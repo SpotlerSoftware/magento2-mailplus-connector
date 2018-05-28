@@ -1,16 +1,17 @@
 <?php
 
-namespace MailPlus\MailPlus\Service;
+namespace MailPlus\MailPlus\Model;
 
 use Magento\Framework\App\ProductMetadataInterface;
 use Magento\Framework\Module\ModuleListInterface;
 use MailPlus\MailPlus\Api\Data\HealthCheckInterface;
+use MailPlus\MailPlus\Api\HealthCheckRepositoryInterface;
 
-class HealthCheckService implements HealthCheckServiceInterface
+class HealthCheckRepository implements HealthCheckRepositoryInterface
 {
     const MODULE_NAME = 'MailPlus_MailPlus';
 
-    const FEATURES = [
+    private $features = [
         'IMAGE_FALLBACK'
     ];
 
@@ -45,7 +46,7 @@ class HealthCheckService implements HealthCheckServiceInterface
         $result = $this->healthCheckInterfaceFactory->create();
         $result->setMagento2Version($magento2Version)
             ->setPluginVersion($pluginVersion)
-            ->setFeatures(self::FEATURES);
+            ->setFeatures($this->features);
         return $result;
     }
 
