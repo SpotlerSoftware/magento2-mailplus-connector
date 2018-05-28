@@ -1,5 +1,6 @@
 require([
-    "jquery"
+    "jquery",
+    "jquery/jquery.cookie"
 ], function ($) {
 //<![CDATA[
     $(document).ready(function () {
