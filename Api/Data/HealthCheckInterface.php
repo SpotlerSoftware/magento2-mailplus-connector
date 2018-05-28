@@ -36,7 +36,7 @@ interface HealthCheckInterface
 
     /**
      * @api
-     * @param array $features
+     * @param string[] $features
      * @return $this
      */
     public function setFeatures(array $features);
@@ -44,7 +44,7 @@ interface HealthCheckInterface
 
     /**
      * @api
-     * @return array
+     * @return string[]
      */
     public function getFeatures();
 }
