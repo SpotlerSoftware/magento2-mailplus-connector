@@ -96,7 +96,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'entity_id',
                     \Magento\Framework\DB\Adapter\AdapterInterface::FK_ACTION_CASCADE);
         }
-        if (version_compare($context->getVersion(), '1.4.5') < 0) {
+        if (version_compare($context->getVersion(), '1.4.6') < 0) {
             // Check whether table with prefix exists. Add prefix if needed to table and foreign keys.
             if (!$setup->getConnection()->isTableExists($setup->getTable('mp_catalog_rule_updated_at'))) {
                 $setup->getConnection()->renameTable('mp_catalog_rule_updated_at', $setup->getTable('mp_catalog_rule_updated_at'));
