@@ -9,6 +9,6 @@ class QuoteConversion extends AbstractDb
     {
         $this->_useIsObjectNew = true;
         $this->_isPkAutoIncrement = false;
-        $this->_init('mp_quote_conversion', 'quote_id');
+        $this->_init($this->getTable('mp_quote_conversion'), 'quote_id');
     }
 }

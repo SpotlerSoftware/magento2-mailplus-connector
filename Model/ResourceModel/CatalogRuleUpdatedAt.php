@@ -10,6 +10,6 @@ class CatalogRuleUpdatedAt extends AbstractDb
     {
         $this->_useIsObjectNew = true;
         $this->_isPkAutoIncrement = false;
-        $this->_init('mp_catalog_rule_updated_at', 'catalog_rule_id');
+        $this->_init($this->getTable('mp_catalog_rule_updated_at'), 'catalog_rule_id');
     }
 }
