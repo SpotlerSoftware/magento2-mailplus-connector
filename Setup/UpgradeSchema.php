@@ -1,4 +1,5 @@
 <?php
+
 namespace MailPlus\MailPlus\Setup;
 
 use Magento\Framework\DB\Ddl\Table;
@@ -94,6 +95,32 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'quote',
                     'entity_id',
                     \Magento\Framework\DB\Adapter\AdapterInterface::FK_ACTION_CASCADE);
+        }
+        if (version_compare($context->getVersion(), '1.4.6') < 0) {
+            // Check whether table with prefix exists. Add prefix if needed to table and foreign keys.
+            if (!$setup->getConnection()->isTableExists($setup->getTable('mp_catalog_rule_updated_at'))) {
+                $setup->getConnection()->renameTable('mp_catalog_rule_updated_at', $setup->getTable('mp_catalog_rule_updated_at'));
+                $setup->getConnection()
+                    ->dropForeignKey($setup->getTable('mp_catalog_rule_updated_at'), 'catalogrule')
+                    ->addForeignKey('catalogrule',
+                        $setup->getTable('mp_catalog_rule_updated_at'),
+                        'catalog_rule_id',
+                        $setup->getTable('catalogrule'),
+                        'rule_id');
+
+            }
+
+            if (!$setup->getConnection()->isTableExists($setup->getTable('mp_quote_conversion'))) {
+                $setup->getConnection()->renameTable('mp_quote_conversion', $setup->getTable('mp_quote_conversion'));
+                $setup->getConnection()
+                    ->dropForeignKey($setup->getTable('mp_quote_conversion'), 'conversion_quote')
+                    ->addForeignKey('conversion_quote',
+                        $setup->getTable('mp_quote_conversion'),
+                        'quote_id',
+                        $setup->getTable('quote'),
+                        'entity_id',
+                        \Magento\Framework\DB\Adapter\AdapterInterface::FK_ACTION_CASCADE);
+            }
         }
         $setup->endSetup();
     }
