@@ -13,6 +13,7 @@ php:
         - php-mbstring
         - php-zip
         - php-soap
+        - php-bcmath
 # Uncomment to enable xdebug. Not recommended when using Composer to install magento
 #        - php-xdebug
 
