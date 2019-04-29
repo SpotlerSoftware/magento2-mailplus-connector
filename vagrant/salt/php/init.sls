@@ -3,7 +3,6 @@ php:
       - pkgs:
         - php
         - php-mysql
-        - php-mcrypt
         - php-curl
         - php-xml
         - php-intl
