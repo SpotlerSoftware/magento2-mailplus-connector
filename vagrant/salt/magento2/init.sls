@@ -75,10 +75,10 @@ magento-install:
 magento-sample-data:
   cmd.run:
     - name: 'php -dmemory_limit=2056M bin/magento sampledata:deploy'
-      - cwd: /var/www/html
-      - unless: test -d /var/www/html/vendor/magento/module-bundle-sample-data
-      - require:
-        - cmd: magento-install
+    - cwd: /var/www/html
+    - unless: test -d /var/www/html/vendor/magento/module-bundle-sample-data
+    - require:
+      - cmd: magento-install
 
 magento-upgrade:
   cmd.wait:
