@@ -17,7 +17,7 @@
     </extension_attributes>
 
     <extension_attributes for="Magento\Quote\Api\Data\CartItemInterface">
-        <attribute code="product_id" type="string">
+        <attribute code="mp_product_id" type="string">
         </attribute>
     </extension_attributes>
 

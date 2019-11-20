@@ -33,7 +33,7 @@ class CartRepositoryPlugin
                 /** @var Item $item */
                 foreach ($items as $item) {
                     $extensionAttributes = $this->getCartItemExtensionAttributes($item);
-                    $extensionAttributes->setProductId($item->getProduct()->getId());
+                    $extensionAttributes->setMpProductId($item->getProduct()->getId());
                     $item->setExtensionAttributes($extensionAttributes);
                 }
             }
