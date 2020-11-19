@@ -2,7 +2,7 @@
 
 Connect your webshop to your MailPlus account.
 
-NOTE: This version is for Magento 2.2 or higher. Please use [version 1.3.4](https://github.com/SpotlerSoftware/magento2-mailplus-connector/releases/tag/v1.3.4) for Magento 2.1. A MailPlus eCom account is required to utilize the following features. 
+NOTE: This version is for Magento 2.2 or higher. A MailPlus eCom account is required to utilize the following features. 
 Please contact MailPlus to setup your account.
 
 ## Installation using composer
