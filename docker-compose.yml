@@ -9,7 +9,7 @@ services:
     env_file:
       - env
     volumes:
-      - ./:/var/www/html/app/code/MailPlus_MailPlus
+      - ./:/var/www/html/app/code/MailPlus/MailPlus
   db:
     image: mysql:5.6.51
     volumes:
