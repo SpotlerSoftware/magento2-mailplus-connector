@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mailplus" translate="label" sortOrder="500">
+            <label>Mailplus</label>
+        </tab>
+        <section id="mailplus" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Mailplus</label>
+            <tab>mailplus</tab>
+            <resource>MailPlus_MailPlus::config</resource>
+            <group id="mailplus" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Suppress default Magento e-mails</label>
+
+                <field id="suppress_newsletter_request_email" translate="label comment" type="select" showInDefault="1" canRestore="1">
+                    <label>Newsletter confirmation request</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When enabled, prevents sending the default Magento newsletter confirmation request e-mail</comment>
+                </field>
+
+                <field id="suppress_newsletter_success_email" translate="label comment" type="select" showInDefault="1" canRestore="1">
+                    <label>Newsletter confirmation success</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When enabled, prevents sending the default Magento newsletter confirmation success e-mail</comment>
+                </field>
+
+                <field id="suppress_newsletter_unsubscribe_email" translate="label comment" type="select" showInDefault="1" canRestore="1">
+                    <label>Newsletter unsubscribe</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When enabled, prevents sending the default Magento newsletter unsubscribe e-mail</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

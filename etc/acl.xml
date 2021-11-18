@@ -6,6 +6,13 @@
             <resource id="Magento_Backend::admin">
                 <resource id="MailPlus_MailPlus::healthcheck" title="Spotler health check" sortOrder="51">
                 </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="MailPlus_MailPlus::config" title="MailPlus configuration" />
+                        </resource>
+                    </resource>
+                </resource>
             </resource>
         </resources>
     </acl>

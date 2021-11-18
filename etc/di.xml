@@ -39,4 +39,8 @@
         <plugin name="Product id for cart items" type="MailPlus\MailPlus\Plugin\CartRepositoryPlugin"
                 sortOrder="1"/>
     </type>
+
+    <type name="Magento\Newsletter\Model\Subscriber">
+        <plugin name="mailplus_magento_newsletter_subscriber_plugin" type="MailPlus\MailPlus\Plugin\Newsletter\Model\SubscriberPlugin" sortOrder="1" />
+    </type>
 </config>
