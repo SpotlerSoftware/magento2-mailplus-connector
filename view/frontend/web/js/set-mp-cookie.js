@@ -1,6 +1,5 @@
 require([
-    "jquery",
-    "jquery/jquery.cookie"
+    "mage/cookies"
 ], function ($) {
 //<![CDATA[
     $(document).ready(function () {
@@ -18,7 +17,7 @@ require([
 
         var mpId = getParameterByName("mpid");
         if (mpId) {
-            $.cookie("mpId", mpId);
+            $.mage.cookies.set("mpId", mpId, {samesite: 'lax', path: '/', lifetime: -1});
         }
     });
 //]]>
