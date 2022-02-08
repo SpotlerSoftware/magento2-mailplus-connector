@@ -1,4 +1,5 @@
 require([
+    "jquery",
     "mage/cookies"
 ], function ($) {
 //<![CDATA[
