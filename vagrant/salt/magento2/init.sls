@@ -86,3 +86,9 @@ magento-upgrade:
     - cwd: /var/www/html
     - watch:
         - cmd: magento-sample-data
+
+magento-db-fix:
+  cmd.run:
+    - name: "mysql -u root -proot magento2 -e 'update x_customer_address_entity set `postcode`=\"1234AB\" where entity_id=1;'"
+    - require:
+      - magento-upgrade

@@ -55,15 +55,6 @@ Please contact MailPlus to setup your account.
 
 ## Project development initialization
 
-- Run composer install
-	*	This should install dependencies to ../vendor (Intellij should add these as library roots for code completions
-	* 	You might need to create a app/etc/vendor_path.php file
+- Create a personal access token on GitHub (https://github.com/settings/tokens)
+- Replace changeMe with your token in vagrant/salt/pillar/git.sls
 - Run vagrant up
-- Uncomment the synced folders in the vagrant file and vagrant reload (you can move the vagrantfile to a separate change set so it's not committed in git)
-- Enable the plugin by running (in the vagrant box)
-
-	magento module:enable --clear-static-content MailPlus_MailPlus
-	
-	magento setup:upgrade
-	
-	magento setup:di:compile

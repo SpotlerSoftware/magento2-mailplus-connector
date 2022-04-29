@@ -1,29 +1,47 @@
-debconf-utils:
+debconf for MariaDB:
+  pkg.installed:
+    - name: debconf-utils
+  debconf.set:
+    - name: mariadb-server-10.5
+    - data:
+        'mysql-server/root_password': {'type': 'password', 'value': 'root'}
+        'mysql-server/root_password_again': {'type': 'password', 'value': 'root'}
+    - require:
+        - pkg: debconf for MariaDB
+
+software-properties-common:
   pkg.installed
 
-mysql-setup:
-  debconf.set:
-    - name: mysql-server
-    - data:
-        'mysql-server/root_password': {'type': 'password', 'value': 'root' }
-        'mysql-server/root_password_again': {'type': 'password', 'value': 'root' }
-    - require:
-      - pkg: debconf-utils
+apt-key adv --fetch-keys https://mariadb.org/mariadb_release_signing_key.asc:
+  cmd.run:
+    - unless: 'apt-key list | grep mariadb'
+    - order: first
 
-mysql-server:
+mariadb:
+  pkgrepo.managed:
+    - humanname: mariadb
+    - name: deb https://ftp.nluug.nl/db/mariadb/repo/10.5/debian bullseye main
+    - file: /etc/apt/sources.list.d/mariadb.list
+    - keyid: C74CD1D8
+    - keyserver: keyserver.ubuntu.com
+    - require_in:
+        - pkg: mariadb
   pkg.installed:
     - pkgs:
-      -  mysql-server
+        - mariadb-server
     - require:
-      - debconf: mysql-setup
+        - debconf: debconf for MariaDB
 
 mysql:
   service.running:
+    - enable: True
     - require:
-      - pkg: mysql-server
-    - watch:
-      - pkg: mysql-server
+        - pkg: mariadb
 
 mysql-database:
   cmd.run:
-    - name: "mysql -u root -proot -e 'create database magento2'"
+    - name: "mysql -u root -proot -e 'create database if not exists magento2'"
+
+set-root-password:
+  cmd.run:
+    - name: "mysql -u root -proot mysql -e 'set password for \"root\"@localhost = password(\"{{ salt['pillar.get']('mysql:root_pw') }}\")'"
