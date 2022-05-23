@@ -52,3 +52,9 @@ Please contact MailPlus to setup your account.
 - Find out who are your most loyal customers with a selection on the number of orders. 
 - Who are the 'big spenders'? Make a selection in MailPlus based on revenue. 
 - Make selections based on a product or brand. Useful for a recall or special offer.
+
+## Project development initialization
+
+- Create a personal access token on GitHub (https://github.com/settings/tokens)
+- Replace changeMe with your token in vagrant/salt/pillar/git.sls
+- Run vagrant up
