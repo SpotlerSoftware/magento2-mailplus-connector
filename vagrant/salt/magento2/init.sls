@@ -14,9 +14,17 @@ set-composer-keys:
   cmd.run:
     - require:
         - cmd: get-composer
+        - cmd: downgrade-composer
         - cmd: magento2-community-edition
     - name: composer config http-basic.repo.magento.com 96fce2b01f0952d09208515bdccb1b77 bac7e70f3b3e5c783698de607f7c234b
     - cwd: /var/www/html
+
+# As of Composer 2.2.0, the allow-plugins option adds a layer of security allowing you to restrict which Composer
+# plugins are able to execute code during a Composer run.
+# Composer 2.0.12 added support for the new GitHub token format.
+downgrade-composer:
+  cmd.run:
+    - name: sudo composer self-update 2.0.12
 
 magento2-community-edition:
   cmd.run:
