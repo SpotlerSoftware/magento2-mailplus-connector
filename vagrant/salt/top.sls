@@ -5,4 +5,5 @@ base:
     - sendmail
     - php
     - mysql
+    - elasticsearch
     - magento2

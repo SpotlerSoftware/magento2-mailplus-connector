@@ -26,12 +26,22 @@ downgrade-composer:
   cmd.run:
     - name: sudo composer self-update 2.0.12
 
+# Magento 2.4.* doesn't support MariaDB 10.5 (yet)
+# https://github.com/magento/magento2/issues/31109
+override-composer:
+  file.replace:
+    - name: /var/www/html/app/etc/di.xml
+    - pattern: '<item name="MariaDB-\(10\.2-10\.4\)" xsi\:type="string">\^10\\\.\[2-4\]\\\.<\/item>'
+    - repl: <item name="MariaDB-(10.2-10.5)" xsi:type="string">^10\.[2-5]\.</item>
+    - require:
+      - magento2-community-edition
+
 magento2-community-edition:
   cmd.run:
     - cwd: /var/www/html
     - name: |
         composer config -g http-basic.repo.magento.com 96fce2b01f0952d09208515bdccb1b77 bac7e70f3b3e5c783698de607f7c234b
-        sudo composer -v create-project --prefer-dist -s dev --repository-url=https://nexus.mailplus.nl/satis/magento/ magento/project-community-edition /var/www/html/ 2.3.*
+        sudo composer -v create-project --prefer-dist -s dev --repository-url=https://nexus.mailplus.nl/satis/magento/ magento/project-community-edition /var/www/html/ 2.4.4
     - require:
         - cmd: get-composer
         - pkg: git
@@ -62,7 +72,6 @@ magento-rights:
         - group
     - watch:
         - cmd: magento-install
-        - cmd: magento-upgrade
 
 magento-cli:
   cmd.run:
@@ -74,29 +83,11 @@ magento-cli:
 magento-install:
   cmd.run:
     - name: 'php /var/www/html/bin/magento setup:install --use-rewrites=1 --backend-frontname=admin
-    --base-url=http://magento.local:9080/ --admin-firstname=dev --admin-lastname=dev --admin-email=test@mailplus.com --admin-user=admin --admin-password=Admin1234 --db-password=root --db-prefix=x_'
+        --base-url=http://magento.local:9080/ --admin-firstname=dev --admin-lastname=dev --admin-email=test@mailplus.com
+        --admin-user=admin --admin-password=Admin1234 --db-password=root --db-prefix=x_
+        --search-engine=elasticsearch7 --elasticsearch-host="localhost" --elasticsearch-port=9200'
     - user: www-data
     - require:
         - cmd: magento-cli
+        - override-composer
     - unless: test -f /var/www/html/var/cache
-
-magento-sample-data:
-  cmd.run:
-    - name: 'php -dmemory_limit=2056M bin/magento sampledata:deploy'
-    - cwd: /var/www/html
-    - unless: test -d /var/www/html/vendor/magento/module-bundle-sample-data
-    - require:
-        - cmd: magento-install
-
-magento-upgrade:
-  cmd.wait:
-    - name: php bin/magento setup:upgrade
-    - cwd: /var/www/html
-    - watch:
-        - cmd: magento-sample-data
-
-magento-db-fix:
-  cmd.run:
-    - name: "mysql -u root -proot magento2 -e 'update x_customer_address_entity set `postcode`=\"1234AB\" where entity_id=1;'"
-    - require:
-      - magento-upgrade
