@@ -1,0 +1,36 @@
+name: Merge
+on:
+  workflow_dispatch:
+    inputs:
+      sourceBranch:
+        description: 'Source branch'
+        default: 'maintenance'
+        type: string
+      targetBranch:
+        description: 'Target branch'
+        default: 'master'
+        type: string
+  push:
+    branches:
+      - maintenance
+ 
+env:
+  SOURCE_BRANCH: ${{ inputs.sourceBranch || 'maintenance'  }}
+  TARGET_BRANCH: ${{ inputs.targetBranch || 'master'  }}
+ 
+ 
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Merge branches
+        uses: devmasx/merge-branch@v1.3.1
+        with:
+          type: now
+          from_branch: ${{ env.SOURCE_BRANCH }}
+          target_branch: ${{ env.TARGET_BRANCH }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
