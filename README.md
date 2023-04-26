@@ -9,8 +9,6 @@ Please contact MailPlus to setup your account.
 
 - cd \<magento-folder\>
 
-- composer config repositories.mailplus vcs https://github.com/SpotlerSoftware/magento2-mailplus-connector
-
 - composer require mailplus/mailplus-connector
 
 - bin/magento module:enable MailPlus_MailPlus
