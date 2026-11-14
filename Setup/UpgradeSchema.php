@@ -122,6 +122,16 @@ class UpgradeSchema implements UpgradeSchemaInterface
                         \Magento\Framework\DB\Adapter\AdapterInterface::FK_ACTION_CASCADE);
             }
         }
+        if (version_compare($context->getVersion(), '1.8.2') < 0) {
+            $setup->getConnection()
+                ->dropForeignKey($setup->getTable('mp_catalog_rule_updated_at'), 'catalogrule')
+                ->addForeignKey('catalogrule',
+                    $setup->getTable('mp_catalog_rule_updated_at'),
+                    'catalog_rule_id',
+                    $setup->getTable('catalogrule'),
+                    'rule_id',
+                    \Magento\Framework\DB\Adapter\AdapterInterface::FK_ACTION_CASCADE);
+        }
         $setup->endSetup();
     }
 }
